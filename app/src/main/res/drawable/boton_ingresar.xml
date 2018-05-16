@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--Para cada uno de los estados del boton se puede definir un estilo diferente -->
+<selector xmlns:android="http://schemas.android.com/apk/res/android" >
+
+    <item android:state_pressed="true" > <!-- Estado del boton cuando es presionado -->
+
+        <shape android:shape="rectangle"  ><!-- Forma del boton -->
+            <corners android:radius="3dip" />
+            <solid android:color="#9E9E9E"/>
+            <size android:width="90dip" android:height="17dip"/>
+        </shape>
+
+    </item>
+
+    <item android:state_focused="true"> <!-- Estado del boton cuando es enfocado -->
+
+        <shape android:shape="rectangle"  >
+            <corners android:radius="3dip" />
+            <solid android:color="#9E9E9E"/>
+            <size android:width="90dip" android:height="17dip"/>
+        </shape>
+
+    </item>
+
+    <item android:state_enabled="true"> <!-- Estado del boton normal -->
+
+        <shape android:shape="rectangle"  >
+            <corners android:radius="3dip" />
+            <solid android:color="#BDBDBD" />
+            <size android:width="90dip" android:height="17dip"/>
+        </shape>
+
+    </item>
+
+</selector>

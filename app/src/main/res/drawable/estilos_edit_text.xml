@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android" >
+
+    <item android:state_pressed="true" > <!-- Estado del boton cuando es presionado -->
+
+        <shape android:shape="rectangle">
+            <solid android:color="#c2c2c2" />
+            <padding android:bottom="2dp"/>
+        </shape>
+    </item>
+
+    <item android:state_focused="true"> <!-- Estado del boton cuando es enfocado -->
+
+        <shape>
+            <solid android:color="#000" />
+            <padding android:bottom="2dp"/>
+        </shape>
+
+    </item>
+
+    <item android:state_enabled="true"> <!-- Estado del boton normal -->
+
+        <shape>
+            <solid android:color="#c2c2c2" />
+            <padding android:bottom="2dp"/>
+        </shape>
+
+    </item>
+
+</layer-list>

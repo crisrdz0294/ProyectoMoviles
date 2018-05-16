@@ -1,0 +1,24 @@
+<resources>
+    <string name="app_name">SAS APP</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+
+    <string name="cedula">Cedula</string>
+    <string name="nombre">Nombre</string>
+    <string name="apellido">Apellidos</string>
+    <string name="clave">Clave</string>
+    <string name="confirmar_clave">Confirmar Clave</string>
+    <string name="registrarUsuario">Registrar Usuario</string>
+    <string name="email">Email</string>
+    <string name="telefonoRegistro">Telefono</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="title_activity_vista_principal">VistaPrincipal</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="nav_header_title">Android Studio</string>
+    <string name="nav_header_subtitle">android.studio@android.com</string>
+    <string name="nav_header_desc">Navigation header</string>
+    <string name="action_settings">Settings</string>
+</resources>

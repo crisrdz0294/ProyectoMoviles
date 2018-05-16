@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view">
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_registrar_servicio"
+            android:icon="@drawable/ic_ingresar_servicio"
+            android:title="Registra Servicio" />
+        <item
+            android:id="@+id/nav_ver_servicios"
+            android:icon="@drawable/ic_ver_servicios"
+            android:title="Ver Servicios" />
+        <item
+            android:id="@+id/nav_ver_perfil"
+            android:icon="@drawable/ic_ver_perfil"
+            android:title="Ver Perfil" />
+        <item
+        android:id="@+id/nav_ver_usuarios"
+        android:icon="@drawable/ic_ver_usuarios"
+        android:title="Ver Usuarios" />
+        <item
+            android:id="@+id/nav_historial_servicios"
+            android:icon="@drawable/ic_star"
+            android:title="Historial Servicios" />
+    </group>
+
+    <item android:title="Otros">
+        <menu>
+            <item
+                android:id="@+id/nav_cerrar_sesion"
+                android:icon="@drawable/ic_salir"
+                android:title="Salir" />
+            <item
+                android:id="@+id/nav_configuracion"
+                android:icon="@drawable/ic_configuracion"
+                android:title="Configuración" />
+            <item
+                android:id="@+id/nav_ayuda"
+                android:icon="@drawable/ic_ver_ayuda"
+                android:title="Ayuda" />
+
+        </menu>
+    </item>
+
+</menu>
