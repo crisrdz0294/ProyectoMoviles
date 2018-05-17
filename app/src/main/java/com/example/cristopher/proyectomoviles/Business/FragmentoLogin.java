@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -14,8 +15,19 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 
+import com.android.volley.Request;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonObjectRequest;
+import com.example.cristopher.proyectomoviles.Data.VolleySingleton;
+import com.example.cristopher.proyectomoviles.Domain.Constantes;
 import com.example.cristopher.proyectomoviles.Domain.Usuario;
 import com.example.cristopher.proyectomoviles.R;
+import com.google.gson.Gson;
+
+import org.json.JSONObject;
+
+import static android.content.ContentValues.TAG;
 
 
 /**
@@ -26,7 +38,7 @@ public class FragmentoLogin extends FragmentoAbsPrincipal implements  View.OnCli
     private EditText correo;
     private EditText clave;
     private Button RegistrarUsuario;
-
+    private Usuario usuarioTemporal;
 
 
     public FragmentoLogin() {
@@ -43,10 +55,52 @@ public class FragmentoLogin extends FragmentoAbsPrincipal implements  View.OnCli
         clave = (EditText) vista.findViewById(R.id.P1);
         Ingresar = (Button) vista.findViewById(R.id.btnIngresar);
         RegistrarUsuario = (Button) vista.findViewById(R.id.btnRegistrarUsuario);
-
         Ingresar.setOnClickListener(this);
         RegistrarUsuario.setOnClickListener(this);
         return vista;
+    }
+
+    private void procesarUsuario(JSONObject response){
+
+        try {
+            Gson gson = new Gson();
+            String respuesta = response.getString("estado");
+
+            switch (respuesta){
+                case "1":
+
+                    JSONObject usuarioJson = response.getJSONObject("usuario");
+                    usuarioTemporal=gson.fromJson(usuarioJson.toString(),Usuario.class);
+
+
+            }
+
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+    }
+
+    private void cargarUsuario(final String correo, final String clave){
+
+        String nuevaUrl= Constantes.LOGIN+"?correo="+correo+"&clave="+clave;
+
+
+        VolleySingleton.getInstance(getActivity()).addToRequestQueue(new JsonObjectRequest(
+                Request.Method.GET, nuevaUrl, null, new Response.Listener<JSONObject>() {
+            @Override
+            public void onResponse(JSONObject response) {
+                procesarUsuario(response);
+
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+
+                Log.d(TAG, "Error Volley: " + error.getMessage());
+
+            }
+        }
+        ));
     }
 
     @Override
@@ -57,10 +111,6 @@ public class FragmentoLogin extends FragmentoAbsPrincipal implements  View.OnCli
             String correo1 = correo.getText().toString();
             String clave1 = clave.getText().toString();
 
-
-
-
-
             if(TextUtils.isEmpty(correo1) || TextUtils.isEmpty(clave1)){
                 pasa=false;
                 Toast mensaje = Toast.makeText(getContext(), "Datos Vacios", Toast.LENGTH_LONG);
@@ -70,14 +120,13 @@ public class FragmentoLogin extends FragmentoAbsPrincipal implements  View.OnCli
 
 
             if (pasa) {
-                Usuario resultado = BD.validarUsuario(correo1,clave1);
-                boolean result= false;
-                if(resultado != null){
-                    if(TextUtils.equals(resultado.getCorreo(),correo1) && TextUtils.equals(resultado.getClave(),clave1)){
-                        result = true;
+                boolean resultado = false;
+                cargarUsuario(correo1,clave1);
+                  if(TextUtils.equals(usuarioTemporal.getCorreo(),correo1) && TextUtils.equals(usuarioTemporal.getClave(),clave1)){
+                       resultado = true;
                     }
-                }
-                if(result){
+
+                if(resultado){
                     //LLAMA AL FRAGMENTO
                     correo.setText("");
                     clave.setText("");

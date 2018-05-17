@@ -45,6 +45,7 @@ public interface Constantes {
     public static final String PUERTO_HOST = "80";
 
     public static final String IP = "http://10.0.3.2:80/appsas/scriptUsuarios.php";
+    public static final String LOGIN="http://10.0.3.2:80/appsas/login.php";
 
     public static final String GET = IP ;
 

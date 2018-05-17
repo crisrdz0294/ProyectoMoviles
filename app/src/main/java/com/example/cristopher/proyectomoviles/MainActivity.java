@@ -5,6 +5,8 @@ import android.content.Intent;
 import android.os.Bundle;
 
 import com.example.cristopher.proyectomoviles.Business.FragmentoAbsActividadPrincipal;
+import com.example.cristopher.proyectomoviles.Business.FragmentoLogin;
+import com.example.cristopher.proyectomoviles.Business.FragmentoRegistro;
 import com.example.cristopher.proyectomoviles.Business.VistaPrincipal;
 
 public class MainActivity extends FragmentoAbsActividadPrincipal {
@@ -16,8 +18,7 @@ public class MainActivity extends FragmentoAbsActividadPrincipal {
 
         if(savedInstanceState==null) {
 
-            Intent intent = new Intent(this, VistaPrincipal.class);
-            startActivity(intent);
+            NuevoFragmento(new FragmentoLogin());
         }
     }
 }
