@@ -1,0 +1,14 @@
+http://localhost/apsas/controladoras/controladoraUsuarios.php
+
+{
+  "accion":"agregarUsuario",
+  "cedula":"12345678",
+  "nombre":"Jose",
+   "apellidos":"alfaro",
+  "correo":"jose@gmail.com",
+  "telefono":"24740245",
+  "clave":"12345",
+  "tipo":"1"
+}
+
+En android se valida si es 1 o 0. Para success.
