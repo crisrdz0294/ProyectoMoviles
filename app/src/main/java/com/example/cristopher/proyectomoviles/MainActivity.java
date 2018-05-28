@@ -19,6 +19,7 @@ public class MainActivity extends FragmentoAbsActividadPrincipal {
         if(savedInstanceState==null) {
 
             NuevoFragmento(new FragmentoLogin());
+
         }
     }
 }

@@ -55,31 +55,11 @@ public class FragmentoListaUsuarios extends FragmentoAbsPrincipal{
         vista =inflater.inflate(R.layout.fragment_fragmento_lista_usuarios, container, false);
         listViewUsuarios=vista.findViewById(R.id.listUsuarios);
         listaUsuarios=new ArrayList<>();
-        cargarDatosAdaptador();
+
         return vista;
     }
 
-    public void cargarDatosAdaptador(){
 
-        VolleySingleton.getInstance(
-                getActivity()).addToRequestQueue(
-                        new JsonObjectRequest(Request.Method.GET, Constantes.IP, null, new Response.Listener<JSONObject>() {
-                            @Override
-                            public void onResponse(JSONObject response) {
-                                procesarRespuestaUsuarios(response);
-                            }
-                        }, new Response.ErrorListener() {
-                            @Override
-                            public void onErrorResponse(VolleyError error) {
-                                Toast mensaje=Toast.makeText(getContext(),"Error:"+error.getMessage(),Toast.LENGTH_LONG);//CREA UN TOAST(NOTIFICACION) QUE HAY CAMPOS VACIOS
-                                mensaje.setGravity(Gravity.CENTER,0,0);//LE ASIGNA LA POSICION A LA NOTIFICACION
-                                mensaje.show();//MUESTRA LA NOTIFICACION
-
-                            }
-                        }
-
-                        ));
-    }
     private void procesarRespuestaUsuarios(JSONObject respuesta){
         Gson gson = new Gson();
         try{

@@ -23,9 +23,17 @@ import com.example.cristopher.proyectomoviles.Data.VolleySingleton;
 import com.example.cristopher.proyectomoviles.Domain.Constantes;
 import com.example.cristopher.proyectomoviles.Domain.Usuario;
 import com.example.cristopher.proyectomoviles.R;
+import com.example.cristopher.proyectomoviles.Retrofit.ApiAdapter;
 import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 
+import org.json.JSONException;
 import org.json.JSONObject;
+
+import java.util.HashMap;
+
+import retrofit2.Call;
+import retrofit2.Callback;
 
 import static android.content.ContentValues.TAG;
 
@@ -60,47 +68,49 @@ public class FragmentoLogin extends FragmentoAbsPrincipal implements  View.OnCli
         return vista;
     }
 
-    private void procesarUsuario(JSONObject response){
+
+    private void cargarUsuario(String correo, String clave){
+
 
         try {
-            Gson gson = new Gson();
-            String respuesta = response.getString("estado");
+            JSONObject objeto=new JSONObject();
 
-            switch (respuesta){
-                case "1":
+            objeto.put("accion","validarUsuario");
+            objeto.put("correo",correo);
+            objeto.put("clave",clave);
 
-                    JSONObject usuarioJson = response.getJSONObject("usuario");
-                    usuarioTemporal=gson.fromJson(usuarioJson.toString(),Usuario.class);
+            Call<Usuario> call= ApiAdapter.getApiServicio().validarUsuario(objeto);
+
+            call.enqueue(new Callback<Usuario>() {
+                @Override
+                public void onResponse(Call<Usuario> call, retrofit2.Response<Usuario> response) {
 
 
-            }
+                    usuarioTemporal=response.body();
+                }
 
-        }catch (Exception e){
-            e.printStackTrace();
+                @Override
+                public void onFailure(Call<Usuario> call, Throwable t) {
+
+                    Toast mensaje = Toast.makeText(getContext(), "error:"+ t.getMessage(), Toast.LENGTH_LONG);
+                    mensaje.setGravity(Gravity.CENTER, 0, 0);
+                    mensaje.show();
+
+                }
+            });
+
+        }catch (JSONException e){
+            Toast mensaje = Toast.makeText(getContext(), "errorJson:"+e.getMessage(), Toast.LENGTH_LONG);
+            mensaje.setGravity(Gravity.CENTER, 0, 0);
+            mensaje.show();
+
         }
-    }
-
-    private void cargarUsuario(final String correo, final String clave){
-
-        String nuevaUrl= Constantes.LOGIN+"?correo="+correo+"&clave="+clave;
 
 
-        VolleySingleton.getInstance(getActivity()).addToRequestQueue(new JsonObjectRequest(
-                Request.Method.GET, nuevaUrl, null, new Response.Listener<JSONObject>() {
-            @Override
-            public void onResponse(JSONObject response) {
-                procesarUsuario(response);
 
-            }
-        }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
 
-                Log.d(TAG, "Error Volley: " + error.getMessage());
 
-            }
-        }
-        ));
+
     }
 
     @Override
@@ -121,22 +131,31 @@ public class FragmentoLogin extends FragmentoAbsPrincipal implements  View.OnCli
 
             if (pasa) {
                 boolean resultado = false;
-                cargarUsuario(correo1,clave1);
-                  if(TextUtils.equals(usuarioTemporal.getCorreo(),correo1) && TextUtils.equals(usuarioTemporal.getClave(),clave1)){
-                       resultado = true;
+
+                try{
+                    cargarUsuario(correo1,clave1);
+                    if(TextUtils.equals(usuarioTemporal.getCorreo(),correo1) && TextUtils.equals(usuarioTemporal.getClave(),clave1)){
+                        resultado = true;
                     }
 
-                if(resultado){
-                    //LLAMA AL FRAGMENTO
-                    correo.setText("");
-                    clave.setText("");
-                    Intent intent = new Intent(getActivity(), VistaPrincipal.class);
-                    getActivity().startActivity(intent);
-                }else {
-                    Toast mensaje = Toast.makeText(getContext(), "Datos Incorrectos", Toast.LENGTH_LONG);
-                    mensaje.setGravity(Gravity.CENTER, 0, 0);
-                    mensaje.show();
+                    if(resultado){
+                        //LLAMA AL FRAGMENTO
+                        correo.setText("");
+                        clave.setText("");
+                        Intent intent = new Intent(getActivity(), VistaPrincipal.class);
+                        getActivity().startActivity(intent);
+                    }else {
+                        Toast mensaje = Toast.makeText(getContext(), "Datos Incorrectos", Toast.LENGTH_LONG);
+                        mensaje.setGravity(Gravity.CENTER, 0, 0);
+                        mensaje.show();
+                    }
+                }catch (Exception e){
+                    e.printStackTrace();
                 }
+
+
+
+
 
 
             }
