@@ -5,7 +5,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.text.TextUtils;
-import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -23,19 +22,12 @@ import com.example.cristopher.proyectomoviles.Data.VolleySingleton;
 import com.example.cristopher.proyectomoviles.Domain.Constantes;
 import com.example.cristopher.proyectomoviles.Domain.Usuario;
 import com.example.cristopher.proyectomoviles.R;
-import com.example.cristopher.proyectomoviles.Retrofit.ApiAdapter;
 import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
 
-import org.json.JSONException;
+import org.json.JSONArray;
 import org.json.JSONObject;
 
-import java.util.HashMap;
-
-import retrofit2.Call;
-import retrofit2.Callback;
-
-import static android.content.ContentValues.TAG;
+import java.util.Arrays;
 
 
 /**
@@ -46,7 +38,8 @@ public class FragmentoLogin extends FragmentoAbsPrincipal implements  View.OnCli
     private EditText correo;
     private EditText clave;
     private Button RegistrarUsuario;
-    private Usuario usuarioTemporal;
+
+
 
 
     public FragmentoLogin() {
@@ -63,54 +56,10 @@ public class FragmentoLogin extends FragmentoAbsPrincipal implements  View.OnCli
         clave = (EditText) vista.findViewById(R.id.P1);
         Ingresar = (Button) vista.findViewById(R.id.btnIngresar);
         RegistrarUsuario = (Button) vista.findViewById(R.id.btnRegistrarUsuario);
+
         Ingresar.setOnClickListener(this);
         RegistrarUsuario.setOnClickListener(this);
         return vista;
-    }
-
-
-    private void cargarUsuario(String correo, String clave){
-
-
-        try {
-            JSONObject objeto=new JSONObject();
-
-            objeto.put("accion","validarUsuario");
-            objeto.put("correo",correo);
-            objeto.put("clave",clave);
-
-            Call<Usuario> call= ApiAdapter.getApiServicio().validarUsuario(objeto);
-
-            call.enqueue(new Callback<Usuario>() {
-                @Override
-                public void onResponse(Call<Usuario> call, retrofit2.Response<Usuario> response) {
-
-
-                    usuarioTemporal=response.body();
-                }
-
-                @Override
-                public void onFailure(Call<Usuario> call, Throwable t) {
-
-                    Toast mensaje = Toast.makeText(getContext(), "error:"+ t.getMessage(), Toast.LENGTH_LONG);
-                    mensaje.setGravity(Gravity.CENTER, 0, 0);
-                    mensaje.show();
-
-                }
-            });
-
-        }catch (JSONException e){
-            Toast mensaje = Toast.makeText(getContext(), "errorJson:"+e.getMessage(), Toast.LENGTH_LONG);
-            mensaje.setGravity(Gravity.CENTER, 0, 0);
-            mensaje.show();
-
-        }
-
-
-
-
-
-
     }
 
     @Override
@@ -130,33 +79,73 @@ public class FragmentoLogin extends FragmentoAbsPrincipal implements  View.OnCli
 
 
             if (pasa) {
-                boolean resultado = false;
+                final Usuario[] usuario = {null};
 
-                try{
-                    cargarUsuario(correo1,clave1);
-                    if(TextUtils.equals(usuarioTemporal.getCorreo(),correo1) && TextUtils.equals(usuarioTemporal.getClave(),clave1)){
-                        resultado = true;
-                    }
+                String nuevaUrl=Constantes.IP_USUARIOS+"?accion=validarUsuario&correo="+correo1+"&clave="+clave1;
 
-                    if(resultado){
-                        //LLAMA AL FRAGMENTO
-                        correo.setText("");
-                        clave.setText("");
-                        Intent intent = new Intent(getActivity(), VistaPrincipal.class);
-                        getActivity().startActivity(intent);
-                    }else {
-                        Toast mensaje = Toast.makeText(getContext(), "Datos Incorrectos", Toast.LENGTH_LONG);
-                        mensaje.setGravity(Gravity.CENTER, 0, 0);
-                        mensaje.show();
-                    }
-                }catch (Exception e){
-                    e.printStackTrace();
-                }
+                VolleySingleton.getInstance(
+                        getActivity()).addToRequestQueue(
+                        new JsonObjectRequest(Request.Method.GET, nuevaUrl, null, new Response.Listener<JSONObject>() {
+                            @Override
+                            public void onResponse(JSONObject response) {
+
+                                Gson gson = new Gson();
+                                try{
+
+                                    String estadoRespuesta=response.getString("estado");//recibe la respuesta del script
+
+                                    switch (estadoRespuesta){
+
+                                        case "1":
+                                            JSONObject object = response.getJSONObject("usuario");
+                                            usuario[0] = gson.fromJson(object.toString(), Usuario.class);
+
+                                            boolean result= false;
+
+                                            if(TextUtils.equals(usuario[0].getCorreo(),correo.getText()) && TextUtils.equals(usuario[0].getClave(),clave.getText())){
+                                                result = true;
+
+                                            }
+
+                                            if(result){
+                                                //LLAMA AL FRAGMENTO
+                                                correo.setText("");
+                                                clave.setText("");
+                                                Intent intent = new Intent(getActivity(), VistaPrincipal.class);
+                                                getActivity().startActivity(intent);
+                                            }else {
+                                                Toast mensaje = Toast.makeText(getContext(), "Datos Incorrectos", Toast.LENGTH_LONG);
+                                                mensaje.setGravity(Gravity.CENTER, 0, 0);
+                                                mensaje.show();
+                                            }
+
+                                            break;
+                                        case "2":
+
+                                            Toast mensaje=Toast.makeText(getContext(),"Fallo al obtener los usuarios",Toast.LENGTH_LONG);//CREA UN TOAST(NOTIFICACION) QUE HAY CAMPOS VACIOS
+                                            mensaje.setGravity(Gravity.CENTER,0,0);//LE ASIGNA LA POSICION A LA NOTIFICACION
+                                            mensaje.show();//MUESTRA LA NOTIFICACION
+                                            break;
+                                    }
 
 
+                                }catch (Exception e){
 
+                                    e.printStackTrace();
+                                }
 
+                            }
+                        }, new Response.ErrorListener() {
+                            @Override
+                            public void onErrorResponse(VolleyError error) {
+                                Toast mensaje=Toast.makeText(getContext(),"Error:"+error.getMessage(),Toast.LENGTH_LONG);//CREA UN TOAST(NOTIFICACION) QUE HAY CAMPOS VACIOS
+                                mensaje.setGravity(Gravity.CENTER,0,0);//LE ASIGNA LA POSICION A LA NOTIFICACION
+                                mensaje.show();//MUESTRA LA NOTIFICACION
 
+                            }
+                        }
+
+                        ));
 
             }
 
@@ -170,4 +159,10 @@ public class FragmentoLogin extends FragmentoAbsPrincipal implements  View.OnCli
         }
 
     }
+
+
+
+
+
+
 }

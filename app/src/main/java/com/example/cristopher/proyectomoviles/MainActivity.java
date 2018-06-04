@@ -6,7 +6,6 @@ import android.os.Bundle;
 
 import com.example.cristopher.proyectomoviles.Business.FragmentoAbsActividadPrincipal;
 import com.example.cristopher.proyectomoviles.Business.FragmentoLogin;
-import com.example.cristopher.proyectomoviles.Business.FragmentoRegistro;
 import com.example.cristopher.proyectomoviles.Business.VistaPrincipal;
 
 public class MainActivity extends FragmentoAbsActividadPrincipal {
@@ -16,10 +15,10 @@ public class MainActivity extends FragmentoAbsActividadPrincipal {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+
+
         if(savedInstanceState==null) {
-
-            NuevoFragmento(new FragmentoLogin());
-
+            agregueFragmentoAPila(new FragmentoLogin());
         }
     }
 }

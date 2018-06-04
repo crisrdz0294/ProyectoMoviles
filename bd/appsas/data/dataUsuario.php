@@ -1,126 +1,127 @@
 <?php 
 	
-	require ('conexion.php');
+	require 'database.php';
 
 	class DataUsuario{
 
 		function DataUsuario(){}
 
-		   public function insertarUsuario($usuarios){
+		public static function obtenerUsuarios(){
 
-		  	$cedula = $usuarios->getcedula();
-		    $nombre = $usuarios->getnombre();
-		    $apellidos = $usuarios->getApellidos();
-		    $correo = $usuarios->getCorreo();
-		    $telefono = $usuarios->getTelefono();
-		    $clave = $usuarios->getClave();
-		    $tipo = $usuarios->getTipo();		 
-		  
+			$consulta="SELECT * FROM tbusuario";
 
-		 
-		        $pdo = Conexion::get()->getDb();
+			try{
 
-		
-		        $sentencia = "INSERT INTO tbusuario (cedula, nombre, apellidos, correo, telefono, clave, tipo)" .
-		            " values (?,?,?,?,?,?,?)";
+				 // Preparar sentencia
+            $comando = database::getInstance()->getDb()->prepare($consulta);
+            // Ejecutar sentencia preparada
+            $comando->execute();
 
-		
-		        $preparedStament = $pdo->prepare($sentencia);
-		        $preparedStament->bindParam(1, $cedula);
-		        $preparedStament->bindParam(2, $nombre);
-		        $preparedStament->bindParam(3, $apellidos);
-		        $preparedStament->bindParam(4, $correo);
-		        $preparedStament->bindParam(5, $telefono);
-		        $preparedStament->bindParam(6, $clave);
-		        $preparedStament->bindParam(7, $tipo);
-
-		        
-		        return $preparedStament->execute();
+            return $comando->fetchAll(PDO::FETCH_ASSOC);
+			}catch(PDOException $e){
+				return "Fallo la conexion";
+			}
 		}
 
-		public function validarUsuario($correo,$clave){
-			  $pdo = Conexion::get()->getDb();
+		public static function obtenerUsuarioCredenciales($correo,$clave){
 
-			  $consulta="SELECT * FROM tbusuario where correo=? AND clave=?";
-			  $preparedStament=$pdo->prepare($consulta);
+			$consulta ="SELECT * FROM tbusuario WHERE correo=? AND clave=?";
 
-			  $preparedStament->bindParam(1, $correo);
-			  $preparedStament->bindParam(2, $clave);
-
-			  $preparedStament->execute();
-
-			  $usuario=$preparedStament->fetch(PDO::FETCH_ASSOC);
-
-			  if($usuario!=null){
-			  	return $usuario;
-			  }else{
-
-			  	return null;
-			  }
-			  
-			  
-		}
-
-		public function obtenerUsuarios(){
-
-			 $pdo = Conexion::get()->getDb();
-
-			 $consulta="SELECT * FROM tbusuario";
-			 $preparedStament=$pdo->prepare($consulta);
-
-			 $preparedStament->execute();
-
-			 $listaUsuarios=$preparedStament->fetchAll(PDO::FETCH_ASSOC);
-
-			 if($listaUsuarios!=null){
-			  	return $listaUsuarios;
-			 }else{
-				return null;
-			  }
+			try{
+            	$comando = database::getInstance()->getDb()->prepare($consulta);
+            	$comando->execute(array($correo,$clave));
+            	$row = $comando->fetch(PDO::FETCH_ASSOC);
+            	return $row;
+			}catch (PDOException $e) {
+            	return "Fallo la consulta";
+        	}
 
 		}
 
-		public function actualizarUsuario($usuario){
+		public static function actualizarUsuario($usuario){
 
-			$cedula = $usuario->getcedula();
-		    $nombre = $usuario->getnombre();
-		    $apellidos = $usuario->getApellidos();
-		    $correo = $usuario->getCorreo();
-		    $telefono = $usuario->getTelefono();
-		    $clave = $usuario->getClave();
-		    $tipo = $usuario->getTipo();
+				$tipo=0;
+				
+		        $consulta = "UPDATE tbusuario" .
+		            " SET nombre=?, apellidos=?, correo=?, tipo=?,telefono=?, clave=?" .
+		            "WHERE cedula=?";
 
-			$pdo = Conexion::get()->getDb();
+		         switch ($usuario->getTipo()) {
+		         	
+		        	case 'Arrendador':
+		        		$tipo=2;
+		        		break;
 
-			$sentencia = "UPDATE tbusuario SET nombre=?,apellidos=?,correo=?,telefono=?,clave=?,tipo=? Where cedula=?" ;
-			
-			$preparedStament = $pdo->prepare($sentencia);
-		    $preparedStament->bindParam(1, $nombre);
-		    $preparedStament->bindParam(2, $apellidos);
-		    $preparedStament->bindParam(3, $correo);
-		    $preparedStament->bindParam(4, $telefono);
-		    $preparedStament->bindParam(5, $clave);
-		    $preparedStament->bindParam(6, $tipo);
-		    $preparedStament->bindParam(7, $cedula);
+		        	case 'Arrendatario':
+		        		$tipo=3;
+		        		break;
+		        	
+		        	default:
+		        		
+		        		break;
+	        	}
 
-		    return $preparedStament->execute();
+		        $cmd = database::getInstance()->getDb()->prepare($consulta);
 
+		        // Relacionar y ejecutar la sentencia
+		        $cmd->execute(array($usuario->getNombre(),$usuario->getApellidos(),$usuario->getCorreo(),$tipo,$usuario->getTelefono(),$usuario->getClave(),$usuario->getCedula()));
+
+		        return $cmd;
 		}
 
-		public function eliminarUsuario($cedula){
+		  public static function insertarUsuario($usuario){
+		  	$tipo=0;
+	     
+	        $comando = "INSERT INTO tbusuario ( " .
+	            "cedula," .
+	            " nombre," .
+	            " apellidos," .
+	            " correo," .
+	            " telefono,".
+	            " clave,".
+	            " tipo)" .
+	            " VALUES( ?,?,?,?,?,?,?)";
 
-			$pdo = Conexion::get()->getDb();
+	        $sentencia = database::getInstance()->getDb()->prepare($comando);
 
-			$consulta="DELETE FROM tbusuario where cedula=?";
+	        switch ($usuario->getTipo()) {
+	        	case 'Arrendador':
+	        		$tipo=2;
+	        		break;
 
-			$preparedStament = $pdo->prepare($consulta);
+	        	case 'Arrendatario':
+	        		$tipo=3;
+	        		break;
+	        	
+	        	default:
+	        		
+	        		break;
+	        }
 
-		    $preparedStament->bindParam(1, $cedula);
+	        return $sentencia->execute(
+	            array(
+	                $usuario->getCedula(),
+	                $usuario->getNombre(),
+	                $usuario->getApellidos(),
+	                $usuario->getCorreo(),
+	                $usuario->getTelefono(),
+	                $usuario->getClave(),
+	                $tipo
+	            )
+	        );
+    	}
 
-		    return $preparedStament->execute();
-		}
+	    public static function eliminarUsuario($cedula){
+	    
+	        $comando = "DELETE FROM tbusuario WHERE cedula=?";
+
+	        $sentencia = database::getInstance()->getDb()->prepare($comando);
+
+	        return $sentencia->execute(array($cedula));
+	    }
+
 	
 
-}
+     }
 
 ?>

@@ -88,7 +88,7 @@ public class VistaPrincipal extends AppCompatActivity
         int id = item.getItemId();
 
         if (id == R.id.nav_registrar_servicio) {
-            agregarFragmentoPrincipal(new FragmentoRegistroServicio());
+           // agregarFragmentoPrincipal(new FragmentoRegistroServicio());
         } else if (id == R.id.nav_ver_servicios) {
             agregarFragmentoPrincipal(new FragmentoServicio());
         } else if (id == R.id.nav_ver_perfil) {

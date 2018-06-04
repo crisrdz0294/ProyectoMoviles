@@ -1,122 +1,168 @@
-<?php 
+<?php
+/**
+ * Obtiene todas las metas de la base de datos
+ */
 
+require '../data/dataUsuario.php';
+include '../dominio/Usuarios.php';
 
+if ($_SERVER['REQUEST_METHOD'] == 'GET') {
 
-require_once '../dominio/Usuarios.php';
-include_once '../data/dataUsuario.php';
+    if(isset($_GET["accion"])){
 
+        switch ($_GET["accion"]) {
 
-class ControladoraUsuarios {
+            case 'validarUsuario':
 
+                 if(isset($_GET["correo"])&&isset($_GET["clave"])){
 
-	 function agregarUsuario(){
-	 	
-        $data = new dataUsuario();
-        $jsonData = json_decode(file_get_contents("php://input"));
-        $usuarios = new Usuarios();
+                $usuario = dataUsuario::obtenerUsuarioCredenciales($_GET["correo"],$_GET["clave"]);
 
-        $usuarios->setCedula($jsonData->cedula);
-        $usuarios->setNombre($jsonData->nombre);
-        $usuarios->setApellidos($jsonData->apellidos);
-        $usuarios->setCorreo($jsonData->correo);
-        $usuarios->setTelefono($jsonData->telefono);
-        $usuarios->setClave($jsonData->clave);
-        $usuarios->setTipo($jsonData->tipo);
+                if ($usuario) {
 
-        if($data->insertarUsuario($usuarios)){
-            echo true;
-        }else {
-            echo false;
+                    $datos["estado"] = 1;
+                    $datos["usuario"] = $usuario;
+
+                    print json_encode($datos);
+                } else {
+                    print json_encode(array(
+                     "estado" => 2,
+                     "mensaje" => "Ha ocurrido un error"
+                 ));
+                }
+            }
+
+            break;
+
+            case 'obtenerUsuarios':
+
+              $usuarios = dataUsuario::obtenerUsuarios();
+
+                if ($usuarios) {
+
+                    $datos["estado"] = 1;
+                    $datos["usuarios"] = $usuarios;
+
+                    print json_encode($datos);
+                } else {
+                    print json_encode(array(
+                        "estado" => 2,
+                        "mensaje" => "Ha ocurrido un error"
+                    ));
+                }
+            break;
+
+            default:
+                print_r("Fallo en la accion");
+                break;
         }
     }
-
-    function validarUsuario(){
-
-        $data = new dataUsuario();
-        $jsonData = json_decode(file_get_contents("php://input"));
-
-        $listaUsuarios=$data->validarUsuario($jsonData->correo,$jsonData->clave);
-
-        if($listaUsuarios==null){
-            echo "No se encuentra el usuario";
-        }else{
-
-            echo json_encode($listaUsuarios);
             
-        }
-    }
 
-    function mostrarUsuarios(){
-        $data = new dataUsuario();
-        $jsonData = json_decode(file_get_contents("php://input"));
+}else if($_SERVER['REQUEST_METHOD'] == 'POST'){
 
-        $listaUsuarios=$data->obtenerUsuarios();
 
-        if($listaUsuarios==null){
-            echo "No se encuentra el usuario";
-        }else{
+    if(isset($_GET["accion"])){
 
-            echo  json_encode($listaUsuarios);
+        switch ($_GET["accion"]) {
+
+            case 'insertarUsuario':
+                  
+                 $usuarioJson = json_decode(file_get_contents("php://input"), true);
+
+                 $usuario = new Usuarios();
+
+                 $usuario->setCedula($usuarioJson['cedula']);
+                 $usuario->setNombre($usuarioJson['nombre']);
+                 $usuario->setApellidos($usuarioJson['apellidos']);
+                 $usuario->setCorreo($usuarioJson['correo']);
+                 $usuario->setTelefono($usuarioJson['telefono']);
+                 $usuario->setClave($usuarioJson['clave']);
+                 $usuario->setTipo($usuarioJson['tipo']);
+
+                $resultado=dataUsuario::insertarUsuario($usuario);
+
+                if ($resultado) {
+       
+                    print json_encode(
+                        array(
+                            'estado' => '1',
+                            'mensaje' => 'Creación exitosa')
+                    );
+                } else {
+    
+                    print json_encode(
+                        array(
+                            'estado' => '2',
+                            'mensaje' => 'Creación fallida')
+                    );
+                }
+            break;
+
+            case 'eliminarUsuario':
+
+                $usuarioJson = json_decode(file_get_contents("php://input"), true);
+                $cedula=$usuarioJson['cedula'];
+
+                if(isset($cedula)){
+                   $resultado=dataUsuario::eliminarUsuario($cedula);
+
+                    if ($resultado) {
+       
+                        print json_encode(
+                            array(
+                                'estado' => '1',
+                                'mensaje' => 'Eliminacion exitosa')
+                        );
+                    } else {
+    
+                        print json_encode(
+                            array(
+                                'estado' => '2',
+                                'mensaje' => 'Eliminacion fallida')
+                        );
+                    } 
+                }
+
+            break;
+
+            case 'actualizarUsuario':
+                  
+                 $usuarioJson = json_decode(file_get_contents("php://input"), true);
+
+                 $usuario = new Usuarios();
+
+                 $usuario->setCedula($usuarioJson['cedula']);
+                 $usuario->setNombre($usuarioJson['nombre']);
+                 $usuario->setApellidos($usuarioJson['apellidos']);
+                 $usuario->setCorreo($usuarioJson['correo']);
+                 $usuario->setTelefono($usuarioJson['telefono']);
+                 $usuario->setClave($usuarioJson['clave']);
+                 $usuario->setTipo($usuarioJson['tipo']);
+
+                $resultado=dataUsuario::actualizarUsuario($usuario);
+
+                if ($resultado) {
+       
+                    print json_encode(
+                        array(
+                            'estado' => '1',
+                            'mensaje' => 'Actualizacion exitosa')
+                    );
+                } else {
+    
+                    print json_encode(
+                        array(
+                            'estado' => '2',
+                            'mensaje' => 'Actualizacion fallida')
+                    );
+                }
+            break;
             
-        }
-
-    }
-
-    function actualizarUsuario(){
-        $data = new dataUsuario();
-        $jsonData = json_decode(file_get_contents("php://input"));
-        $usuarios = new Usuarios();
-
-        $usuarios->setCedula($jsonData->cedula);
-        $usuarios->setNombre($jsonData->nombre);
-        $usuarios->setApellidos($jsonData->apellidos);
-        $usuarios->setCorreo($jsonData->correo);
-        $usuarios->setTelefono($jsonData->telefono);
-        $usuarios->setClave($jsonData->clave);
-        $usuarios->setTipo($jsonData->tipo);
-
-        if($data->actualizarUsuario($usuarios)){
-            echo true;
-        }else {
-            echo false;
-        }
-    }
-
-    function eliminarUsuario(){
-        $data = new dataUsuario();
-        $jsonData = json_decode(file_get_contents("php://input"));
-
-        if($data->eliminarUsuario($jsonData->cedula)){
-            echo true;
-        }else {
-            echo false;
+            default:
+                # code...
+                break;
         }
     }
 
 }
-
-$data = json_decode(file_get_contents("php://input"));
-$op = $data->accion;
-
-
-$control = new ControladoraUsuarios();
-
-if($op=="validarUsuario"){
-    $control->validarUsuario();
-}
-if($op=="agregarUsuario"){
-    $control->agregarUsuario();
-}
-if($op=="mostrarUsuarios"){
-    $control->mostrarUsuarios();
-}
-
-if($op=="actualizarUsuario"){
-    $control->actualizarUsuario();
-}
-
-if($op=="eliminarUsuario"){
-    $control->eliminarUsuario();
-}
-
- ?>
