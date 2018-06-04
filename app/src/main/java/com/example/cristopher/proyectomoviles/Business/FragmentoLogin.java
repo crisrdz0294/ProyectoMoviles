@@ -14,8 +14,20 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 
+import com.android.volley.Request;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonObjectRequest;
+import com.example.cristopher.proyectomoviles.Data.VolleySingleton;
+import com.example.cristopher.proyectomoviles.Domain.Constantes;
 import com.example.cristopher.proyectomoviles.Domain.Usuario;
 import com.example.cristopher.proyectomoviles.R;
+import com.google.gson.Gson;
+
+import org.json.JSONArray;
+import org.json.JSONObject;
+
+import java.util.Arrays;
 
 
 /**
@@ -26,6 +38,7 @@ public class FragmentoLogin extends FragmentoAbsPrincipal implements  View.OnCli
     private EditText correo;
     private EditText clave;
     private Button RegistrarUsuario;
+
 
 
 
@@ -57,10 +70,6 @@ public class FragmentoLogin extends FragmentoAbsPrincipal implements  View.OnCli
             String correo1 = correo.getText().toString();
             String clave1 = clave.getText().toString();
 
-
-
-
-
             if(TextUtils.isEmpty(correo1) || TextUtils.isEmpty(clave1)){
                 pasa=false;
                 Toast mensaje = Toast.makeText(getContext(), "Datos Vacios", Toast.LENGTH_LONG);
@@ -70,25 +79,73 @@ public class FragmentoLogin extends FragmentoAbsPrincipal implements  View.OnCli
 
 
             if (pasa) {
-                Usuario resultado = BD.validarUsuario(correo1,clave1);
-                boolean result= false;
-                if(resultado != null){
-                    if(TextUtils.equals(resultado.getCorreo(),correo1) && TextUtils.equals(resultado.getClave(),clave1)){
-                        result = true;
-                    }
-                }
-                if(result){
-                    //LLAMA AL FRAGMENTO
-                    correo.setText("");
-                    clave.setText("");
-                    Intent intent = new Intent(getActivity(), VistaPrincipal.class);
-                    getActivity().startActivity(intent);
-                }else {
-                    Toast mensaje = Toast.makeText(getContext(), "Datos Incorrectos", Toast.LENGTH_LONG);
-                    mensaje.setGravity(Gravity.CENTER, 0, 0);
-                    mensaje.show();
-                }
+                final Usuario[] usuario = {null};
 
+                String nuevaUrl=Constantes.IP_USUARIOS+"?accion=validarUsuario&correo="+correo1+"&clave="+clave1;
+
+                VolleySingleton.getInstance(
+                        getActivity()).addToRequestQueue(
+                        new JsonObjectRequest(Request.Method.GET, nuevaUrl, null, new Response.Listener<JSONObject>() {
+                            @Override
+                            public void onResponse(JSONObject response) {
+
+                                Gson gson = new Gson();
+                                try{
+
+                                    String estadoRespuesta=response.getString("estado");//recibe la respuesta del script
+
+                                    switch (estadoRespuesta){
+
+                                        case "1":
+                                            JSONObject object = response.getJSONObject("usuario");
+                                            usuario[0] = gson.fromJson(object.toString(), Usuario.class);
+
+                                            boolean result= false;
+
+                                            if(TextUtils.equals(usuario[0].getCorreo(),correo.getText()) && TextUtils.equals(usuario[0].getClave(),clave.getText())){
+                                                result = true;
+
+                                            }
+
+                                            if(result){
+                                                //LLAMA AL FRAGMENTO
+                                                correo.setText("");
+                                                clave.setText("");
+                                                Intent intent = new Intent(getActivity(), VistaPrincipal.class);
+                                                getActivity().startActivity(intent);
+                                            }else {
+                                                Toast mensaje = Toast.makeText(getContext(), "Datos Incorrectos", Toast.LENGTH_LONG);
+                                                mensaje.setGravity(Gravity.CENTER, 0, 0);
+                                                mensaje.show();
+                                            }
+
+                                            break;
+                                        case "2":
+
+                                            Toast mensaje=Toast.makeText(getContext(),"Fallo al obtener los usuarios",Toast.LENGTH_LONG);//CREA UN TOAST(NOTIFICACION) QUE HAY CAMPOS VACIOS
+                                            mensaje.setGravity(Gravity.CENTER,0,0);//LE ASIGNA LA POSICION A LA NOTIFICACION
+                                            mensaje.show();//MUESTRA LA NOTIFICACION
+                                            break;
+                                    }
+
+
+                                }catch (Exception e){
+
+                                    e.printStackTrace();
+                                }
+
+                            }
+                        }, new Response.ErrorListener() {
+                            @Override
+                            public void onErrorResponse(VolleyError error) {
+                                Toast mensaje=Toast.makeText(getContext(),"Error:"+error.getMessage(),Toast.LENGTH_LONG);//CREA UN TOAST(NOTIFICACION) QUE HAY CAMPOS VACIOS
+                                mensaje.setGravity(Gravity.CENTER,0,0);//LE ASIGNA LA POSICION A LA NOTIFICACION
+                                mensaje.show();//MUESTRA LA NOTIFICACION
+
+                            }
+                        }
+
+                        ));
 
             }
 
@@ -102,4 +159,10 @@ public class FragmentoLogin extends FragmentoAbsPrincipal implements  View.OnCli
         }
 
     }
+
+
+
+
+
+
 }

@@ -1,32 +1,27 @@
 package com.example.cristopher.proyectomoviles.Domain;
 
 public class Usuario {
+
     private String nombre;
     private String cedula;
     private String apellidos;
     private String clave;
     private String correo;
     private int telefono;
-    private int tipoUsuario;
+    private int tipo;
 
-    public Usuario(String nombre, String cedula, String apellidos, String clave, String correo, int telefono, int tipoUsuario) {
-        this.nombre = nombre;
-        this.cedula = cedula;
-        this.apellidos = apellidos;
-        this.clave = clave;
-        this.correo = correo;
+    public Usuario(int telefono, String nombre, String clave, String apellidos, String correo, String cedula,  int tipo ) {
         this.telefono = telefono;
-        this.tipoUsuario = tipoUsuario;
-    }
+        this.nombre = nombre;
+        this.clave = clave;
+        this.apellidos = apellidos;
+        this.correo = correo;
+        this.cedula = cedula;
+        this.tipo = tipo;
 
-    public Usuario() {
-        this.nombre = "";
-        this.cedula = "";
-        this.apellidos = "";
-        this.clave = "";
-        this.correo = "";
-        this.telefono = 0;
-        this.tipoUsuario = 0;
+
+
+
     }
 
     public String getNombre() {
@@ -78,11 +73,11 @@ public class Usuario {
     }
 
     public int getTipoUsuario() {
-        return tipoUsuario;
+        return tipo;
     }
 
     public void setTipoUsuario(int tipoUsuario) {
-        this.tipoUsuario = tipoUsuario;
+        this.tipo = tipoUsuario;
     }
 
     @Override
@@ -93,8 +88,8 @@ public class Usuario {
                 ", apellidos='" + apellidos + '\'' +
                 ", clave='" + clave + '\'' +
                 ", correo='" + correo + '\'' +
-                ", telefono=" + telefono +
-                ", tipoUsuario=" + tipoUsuario +
+                ", telefono=" + telefono +'\'' +
+                ", tipoUsuario=" + tipo +
                 '}';
     }
 }

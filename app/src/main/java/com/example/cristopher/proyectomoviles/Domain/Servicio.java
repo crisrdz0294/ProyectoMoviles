@@ -18,20 +18,23 @@ public class Servicio
     private  String  descripcionServicio;
     private String ubicacionServicio;
     private boolean estadoServicio;
+    private String PrecioServicio;
     private ArrayList<String> listaFotos;
+    private String tipoServicio;
 public Servicio( int IdServicio,
         String NombreServicio,
         String  DescripcionServicio,
         String UbicacionServicio,
          boolean EstadoServicio,
-         ArrayList<String> ListaFotos){
+         ArrayList<String> ListaFotos,String precio,String tipo){
     this.descripcionServicio=DescripcionServicio;
     this.estadoServicio=EstadoServicio;
     this.idServicio=IdServicio;
     this.listaFotos=ListaFotos;
     this.nombreServicio=NombreServicio;
     this.descripcionServicio=DescripcionServicio;
-
+    this.PrecioServicio=precio;
+this.tipoServicio=tipo;
 }
 
 
@@ -66,6 +69,12 @@ public Servicio( int IdServicio,
     public void setUbicacionServicio(String ubicacionServicio) {
         this.ubicacionServicio = ubicacionServicio;
     }
+public String getPrecioServicio(){
+    return PrecioServicio;
+}
+public String getTipoServicio(){
+    return tipoServicio;
+}
 
     public boolean isEstadoServicio() {
         return estadoServicio;

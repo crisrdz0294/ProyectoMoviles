@@ -1,18 +1,14 @@
 package com.example.cristopher.proyectomoviles.Business;
 
 
-import android.database.Cursor;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
-import android.widget.Button;
 import android.widget.ListView;
 import android.widget.Toast;
-
 import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
@@ -22,10 +18,12 @@ import com.example.cristopher.proyectomoviles.Domain.Constantes;
 import com.example.cristopher.proyectomoviles.Domain.Usuario;
 import com.example.cristopher.proyectomoviles.R;
 import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
 
+import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -40,7 +38,7 @@ public class FragmentoListaUsuarios extends FragmentoAbsPrincipal{
     private List<Usuario> listaUsuarios;
 
     private View vista;
-
+    private ArrayList<Usuario> usuarios = new ArrayList<>();
 
     public FragmentoListaUsuarios() {
         // Required empty public constructor
@@ -61,9 +59,11 @@ public class FragmentoListaUsuarios extends FragmentoAbsPrincipal{
 
     public void cargarDatosAdaptador(){
 
+        String nuevaUrl=Constantes.IP_USUARIOS+"?accion=obtenerUsuarios";
+
         VolleySingleton.getInstance(
                 getActivity()).addToRequestQueue(
-                        new JsonObjectRequest(Request.Method.GET, Constantes.IP, null, new Response.Listener<JSONObject>() {
+                        new JsonObjectRequest(Request.Method.GET, nuevaUrl, null, new Response.Listener<JSONObject>() {
                             @Override
                             public void onResponse(JSONObject response) {
                                 procesarRespuestaUsuarios(response);
@@ -80,6 +80,9 @@ public class FragmentoListaUsuarios extends FragmentoAbsPrincipal{
 
                         ));
     }
+
+
+
     private void procesarRespuestaUsuarios(JSONObject respuesta){
         Gson gson = new Gson();
         try{
@@ -89,10 +92,29 @@ public class FragmentoListaUsuarios extends FragmentoAbsPrincipal{
             switch (estadoRespuesta){
 
                 case "1"://obtuvo los usuarios
-                    JSONArray usuariosJson=respuesta.getJSONArray("usuarios");
-                   Usuario[] usuarios=gson.fromJson(usuariosJson.toString(),Usuario[].class);
-                    UsuariosAdapter usuariosAdapter=new UsuariosAdapter(getContext(),R.layout.list_view_usuarios, Arrays.asList(usuarios));
-                    listViewUsuarios.setAdapter(usuariosAdapter);
+
+
+                    try{
+                        JSONArray usuariosJson=respuesta.getJSONArray("usuarios");
+
+                     //   Type listType = new TypeToken<ArrayList<Usuario>>(){}.getType();
+
+                      //  List<Usuario> listaUsuario=new Gson().fromJson(String.valueOf(usuariosJson),listType);
+
+                        Usuario[] usuarios=gson.fromJson(usuariosJson.toString(),Usuario[].class);
+
+
+                        UsuariosAdapter usuariosAdapter=new UsuariosAdapter(getContext(),R.layout.list_view_usuarios, Arrays.asList(usuarios));
+                        listViewUsuarios.setAdapter(usuariosAdapter);
+
+                    }catch (Exception e){
+
+                        Toast mensaje=Toast.makeText(getContext(),"Excepcion"+e.getMessage(),Toast.LENGTH_LONG);//CREA UN TOAST(NOTIFICACION) QUE HAY CAMPOS VACIOS
+                        mensaje.setGravity(Gravity.CENTER,0,0);//LE ASIGNA LA POSICION A LA NOTIFICACION
+                        mensaje.show();//MUESTRA LA NOTIFICACION
+
+                    }
+
                     break;
                 case "2":
 

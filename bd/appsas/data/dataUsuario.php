@@ -23,13 +23,13 @@
 			}
 		}
 
-		public static function obtenerUsuarioPorCedula($cedula){
+		public static function obtenerUsuarioCredenciales($correo,$clave){
 
-			$consulta ="SELECT * FROM tbusuario WHERE cedula=?";
+			$consulta ="SELECT * FROM tbusuario WHERE correo=? AND clave=?";
 
 			try{
             	$comando = database::getInstance()->getDb()->prepare($consulta);
-            	$comando->execute(array($cedula));
+            	$comando->execute(array($correo,$clave));
             	$row = $comando->fetch(PDO::FETCH_ASSOC);
             	return $row;
 			}catch (PDOException $e) {
@@ -38,24 +38,39 @@
 
 		}
 
-		public static function actualizarUsuario($cedula,$nombre,$apellidos,$correo,$telefono,$clave){
+		public static function actualizarUsuario($usuario){
 
-
-					   // Creando consulta UPDATE
+				$tipo=0;
+				
 		        $consulta = "UPDATE tbusuario" .
-		            " SET cedula=?, nombre=?, apellidos=?, correo=?, telefono=?, clave=? " .
+		            " SET nombre=?, apellidos=?, correo=?, tipo=?,telefono=?, clave=?" .
 		            "WHERE cedula=?";
 
-		        // Preparar la sentencia
+		         switch ($usuario->getTipo()) {
+		         	
+		        	case 'Arrendador':
+		        		$tipo=2;
+		        		break;
+
+		        	case 'Arrendatario':
+		        		$tipo=3;
+		        		break;
+		        	
+		        	default:
+		        		
+		        		break;
+	        	}
+
 		        $cmd = database::getInstance()->getDb()->prepare($consulta);
 
 		        // Relacionar y ejecutar la sentencia
-		        $cmd->execute(array($cedula,$nombre,$apellidos,$correo,$telefono,$clave));
+		        $cmd->execute(array($usuario->getNombre(),$usuario->getApellidos(),$usuario->getCorreo(),$tipo,$usuario->getTelefono(),$usuario->getClave(),$usuario->getCedula()));
 
 		        return $cmd;
 		}
 
-		  public static function insertarUsuario($cedula,$nombre,$apellidos,$correo,$telefono,$clave,$tipoUsuario){
+		  public static function insertarUsuario($usuario){
+		  	$tipo=0;
 	     
 	        $comando = "INSERT INTO tbusuario ( " .
 	            "cedula," .
@@ -69,15 +84,29 @@
 
 	        $sentencia = database::getInstance()->getDb()->prepare($comando);
 
+	        switch ($usuario->getTipo()) {
+	        	case 'Arrendador':
+	        		$tipo=2;
+	        		break;
+
+	        	case 'Arrendatario':
+	        		$tipo=3;
+	        		break;
+	        	
+	        	default:
+	        		
+	        		break;
+	        }
+
 	        return $sentencia->execute(
 	            array(
-	                $cedula,
-	                $nombre,
-	                $apellidos,
-	                $correo,
-	                $telefono,
-	                $clave,
-	                $tipoUsuario
+	                $usuario->getCedula(),
+	                $usuario->getNombre(),
+	                $usuario->getApellidos(),
+	                $usuario->getCorreo(),
+	                $usuario->getTelefono(),
+	                $usuario->getClave(),
+	                $tipo
 	            )
 	        );
     	}
