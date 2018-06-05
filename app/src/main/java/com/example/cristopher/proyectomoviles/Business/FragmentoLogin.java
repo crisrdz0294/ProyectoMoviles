@@ -2,6 +2,7 @@ package com.example.cristopher.proyectomoviles.Business;
 
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.text.TextUtils;
@@ -28,6 +29,8 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 
 import java.util.Arrays;
+
+import static android.content.Context.MODE_PRIVATE;
 
 
 /**
@@ -111,6 +114,15 @@ public class FragmentoLogin extends FragmentoAbsPrincipal implements  View.OnCli
                                                 //LLAMA AL FRAGMENTO
                                                 correo.setText("");
                                                 clave.setText("");
+
+                                                SharedPreferences pref = getContext().getSharedPreferences("Sesion", MODE_PRIVATE);
+                                                SharedPreferences.Editor editor = pref.edit();
+
+                                                editor.putInt("tipoUsuario",usuario[0].getTipoUsuario() );
+                                                editor.putString("nombre", usuario[0].getNombre());
+                                                editor.putString("apellidos",usuario[0].getApellidos());
+                                                editor.commit();
+
                                                 Intent intent = new Intent(getActivity(), VistaPrincipal.class);
                                                 getActivity().startActivity(intent);
                                             }else {

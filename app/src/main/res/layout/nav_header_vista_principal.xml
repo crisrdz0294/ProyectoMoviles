@@ -24,6 +24,7 @@
         tools:layout_editor_absoluteY="160dp" />
 
     <TextView
+        android:id="@+id/nombreUsuario"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:paddingTop="@dimen/nav_header_vertical_spacing"
@@ -33,7 +34,7 @@
         tools:layout_editor_absoluteY="160dp" />
 
     <TextView
-        android:id="@+id/textView"
+        android:id="@+id/apellidoUsuario"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Apellido"
