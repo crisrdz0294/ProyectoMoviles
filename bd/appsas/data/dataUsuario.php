@@ -8,7 +8,7 @@
 
 		public static function obtenerUsuarios(){
 
-			$consulta="SELECT * FROM tbusuario";
+			$consulta="SELECT DISTINCT * FROM `tbusuario` WHERE cedula != 12345678 ORDER BY cedula ASC";
 
 			try{
 
