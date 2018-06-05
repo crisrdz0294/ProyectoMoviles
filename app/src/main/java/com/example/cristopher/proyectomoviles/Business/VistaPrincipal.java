@@ -1,8 +1,10 @@
 package com.example.cristopher.proyectomoviles.Business;
 
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
+import android.view.Gravity;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -12,19 +14,31 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.EditText;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.cristopher.proyectomoviles.R;
 
-public class VistaPrincipal extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener {
+public class VistaPrincipal extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
-    public void agregarFragmentoPrincipal(FragmentoAbsPrincipal fragment){
+
+  public void agregarFragmentoPrincipal(FragmentoAbsPrincipal fragment){
         (getSupportFragmentManager().beginTransaction()
                 .replace(R.id.Contenedor2 , fragment))
                 .commit();
     }
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
+
+
+        SharedPreferences sesion= getSharedPreferences("Sesion", MODE_PRIVATE);
+
+        int tipoUsuario=sesion.getInt("tipoUsuario",0);
+        String nombre=sesion.getString("nombre","");
+        String apellidos=sesion.getString("apellidos","");
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_vista_principal);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
@@ -46,6 +60,15 @@ public class VistaPrincipal extends AppCompatActivity
         toggle.syncState();
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
+
+        View hView = navigationView.getHeaderView(0);
+
+        TextView nombreHeader = (TextView) hView.findViewById(R.id.nombreUsuario);
+        TextView apellidosHeader=(TextView) hView.findViewById(R.id.apellidoUsuario);
+
+        nombreHeader.setText(nombre);
+        apellidosHeader.setText(apellidos);
+
         navigationView.setNavigationItemSelectedListener(this);
     }
 
