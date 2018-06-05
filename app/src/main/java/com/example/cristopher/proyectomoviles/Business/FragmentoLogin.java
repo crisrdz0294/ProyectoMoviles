@@ -121,6 +121,7 @@ public class FragmentoLogin extends FragmentoAbsPrincipal implements  View.OnCli
                                                 editor.putInt("tipoUsuario",usuario[0].getTipoUsuario() );
                                                 editor.putString("nombre", usuario[0].getNombre());
                                                 editor.putString("apellidos",usuario[0].getApellidos());
+                                                editor.putString("cedula",usuario[0].getCedula());
                                                 editor.commit();
 
                                                 Intent intent = new Intent(getActivity(), VistaPrincipal.class);

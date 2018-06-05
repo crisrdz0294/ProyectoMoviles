@@ -31,11 +31,9 @@ public class VistaPrincipal extends AppCompatActivity implements NavigationView.
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
+       SharedPreferences sesion= getSharedPreferences("Sesion", MODE_PRIVATE);
 
 
-        SharedPreferences sesion= getSharedPreferences("Sesion", MODE_PRIVATE);
-
-        int tipoUsuario=sesion.getInt("tipoUsuario",0);
         String nombre=sesion.getString("nombre","");
         String apellidos=sesion.getString("apellidos","");
 
@@ -70,6 +68,7 @@ public class VistaPrincipal extends AppCompatActivity implements NavigationView.
         apellidosHeader.setText(apellidos);
 
         navigationView.setNavigationItemSelectedListener(this);
+        validarTipoUsuario();
     }
 
     @Override
@@ -102,6 +101,39 @@ public class VistaPrincipal extends AppCompatActivity implements NavigationView.
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    public void validarTipoUsuario(){
+
+        SharedPreferences sesion= getSharedPreferences("Sesion", MODE_PRIVATE);
+        int tipoUsuario=sesion.getInt("tipoUsuario",0);
+
+        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
+        Menu nav_Menu = navigationView.getMenu();
+
+        switch (tipoUsuario){
+
+            case 1:
+
+                nav_Menu.findItem(R.id.nav_registrar_servicio).setVisible(false);
+                nav_Menu.findItem(R.id.nav_ver_servicios).setVisible(false);
+                nav_Menu.findItem(R.id.nav_historial_servicios).setVisible(false);
+                break;
+            case 2:
+
+                nav_Menu.findItem(R.id.nav_ver_usuarios).setVisible(false);
+                nav_Menu.findItem(R.id.nav_historial_servicios).setVisible(false);
+
+                break;
+
+            case 3:
+                nav_Menu.findItem(R.id.nav_ver_usuarios).setVisible(false);
+                nav_Menu.findItem(R.id.nav_registrar_servicio).setVisible(false);
+                nav_Menu.findItem(R.id.nav_ver_servicios).setVisible(false);
+                break;
+        }
+
+
     }
 
     @SuppressWarnings("StatementWithEmptyBody")
