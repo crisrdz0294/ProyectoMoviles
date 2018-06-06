@@ -1,6 +1,8 @@
 package com.example.cristopher.proyectomoviles.Domain;
 
 
+import android.graphics.Bitmap;
+
 import java.util.ArrayList;
 
 /**
@@ -19,14 +21,14 @@ public class Servicio
     private String ubicacionServicio;
     private boolean estadoServicio;
     private String PrecioServicio;
-    private ArrayList<String> listaFotos;
+    private ArrayList<Bitmap> listaFotos;
     private String tipoServicio;
 public Servicio( int IdServicio,
         String NombreServicio,
         String  DescripcionServicio,
         String UbicacionServicio,
          boolean EstadoServicio,
-         ArrayList<String> ListaFotos,String precio,String tipo){
+         ArrayList<Bitmap> ListaFotos,String precio,String tipo){
     this.descripcionServicio=DescripcionServicio;
     this.estadoServicio=EstadoServicio;
     this.idServicio=IdServicio;
@@ -84,11 +86,11 @@ public String getTipoServicio(){
         this.estadoServicio = estadoServicio;
     }
 
-    public ArrayList<String> getListaFotos() {
+    public ArrayList<Bitmap> getListaFotos() {
         return listaFotos;
     }
 
-    public void setListaFotos(ArrayList<String> listaFotos) {
+    public void setListaFotos(ArrayList<Bitmap> listaFotos) {
         this.listaFotos = listaFotos;
     }
 }

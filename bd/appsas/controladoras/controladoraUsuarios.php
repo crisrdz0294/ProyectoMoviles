@@ -1,7 +1,5 @@
 <?php
-/**
- * Obtiene todas las metas de la base de datos
- */
+
 
 require '../data/dataUsuario.php';
 include '../dominio/Usuarios.php';
@@ -57,7 +55,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
                 break;
         }
     }
-            
+
 
 }else if($_SERVER['REQUEST_METHOD'] == 'POST'){
 
@@ -67,7 +65,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
         switch ($_GET["accion"]) {
 
             case 'insertarUsuario':
-                  
+
                  $usuarioJson = json_decode(file_get_contents("php://input"), true);
 
                  $usuario = new Usuarios();
@@ -83,14 +81,14 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
                 $resultado=dataUsuario::insertarUsuario($usuario);
 
                 if ($resultado) {
-       
+
                     print json_encode(
                         array(
                             'estado' => '1',
                             'mensaje' => 'Creación exitosa')
                     );
                 } else {
-    
+
                     print json_encode(
                         array(
                             'estado' => '2',
@@ -108,26 +106,26 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
                    $resultado=dataUsuario::eliminarUsuario($cedula);
 
                     if ($resultado) {
-       
+
                         print json_encode(
                             array(
                                 'estado' => '1',
                                 'mensaje' => 'Eliminacion exitosa')
                         );
                     } else {
-    
+
                         print json_encode(
                             array(
                                 'estado' => '2',
                                 'mensaje' => 'Eliminacion fallida')
                         );
-                    } 
+                    }
                 }
 
             break;
 
             case 'actualizarUsuario':
-                  
+
                  $usuarioJson = json_decode(file_get_contents("php://input"), true);
 
                  $usuario = new Usuarios();
@@ -143,14 +141,14 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
                 $resultado=dataUsuario::actualizarUsuario($usuario);
 
                 if ($resultado) {
-       
+
                     print json_encode(
                         array(
                             'estado' => '1',
                             'mensaje' => 'Actualizacion exitosa')
                     );
                 } else {
-    
+
                     print json_encode(
                         array(
                             'estado' => '2',
@@ -158,7 +156,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
                     );
                 }
             break;
-            
+
             default:
                 # code...
                 break;
@@ -166,3 +164,4 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
     }
 
 }
+?>
