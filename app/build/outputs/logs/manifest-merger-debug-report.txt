@@ -1,0 +1,146 @@
+-- Merging decision tree log ---
+manifest
+ADDED from C:\Users\steff\AndroidStudioProjects\ProyectoMoviles\app\src\main\AndroidManifest.xml:2:1-28:12
+INJECTED from C:\Users\steff\AndroidStudioProjects\ProyectoMoviles\app\src\main\AndroidManifest.xml:2:1-28:12
+INJECTED from C:\Users\steff\AndroidStudioProjects\ProyectoMoviles\app\src\main\AndroidManifest.xml:2:1-28:12
+INJECTED from C:\Users\steff\AndroidStudioProjects\ProyectoMoviles\app\src\main\AndroidManifest.xml:2:1-28:12
+MERGED from [com.android.support:design:27.1.1] C:\Users\steff\.gradle\caches\transforms-1\files-1.1\design-27.1.1.aar\9ef8cb428ec97e606f575e9f814da90c\AndroidManifest.xml:17:1-22:12
+MERGED from [com.android.support:appcompat-v7:27.1.1] C:\Users\steff\.gradle\caches\transforms-1\files-1.1\appcompat-v7-27.1.1.aar\8c7bfa1d4282e02ef1eb78a28113db00\AndroidManifest.xml:17:1-22:12
+MERGED from [com.android.support.constraint:constraint-layout:1.1.0] C:\Users\steff\.gradle\caches\transforms-1\files-1.1\constraint-layout-1.1.0.aar\bd70b3e74134c169bf11ca657ffa3469\AndroidManifest.xml:2:1-11:12
+MERGED from [com.android.support:support-v4:27.1.1] C:\Users\steff\.gradle\caches\transforms-1\files-1.1\support-v4-27.1.1.aar\c7f59bea674219848b62e5bd9ce726bd\AndroidManifest.xml:17:1-22:12
+MERGED from [com.android.volley:volley:1.1.0] C:\Users\steff\.gradle\caches\transforms-1\files-1.1\volley-1.1.0.aar\c006d29c81d53f5e97d77f854f66ce7f\AndroidManifest.xml:2:1-11:12
+MERGED from [com.jakewharton:butterknife:8.1.0] C:\Users\steff\.gradle\caches\transforms-1\files-1.1\butterknife-8.1.0.aar\e51afc86700b636521b05fb43b555a7b\AndroidManifest.xml:2:1-7:12
+MERGED from [com.android.support:support-fragment:27.1.1] C:\Users\steff\.gradle\caches\transforms-1\files-1.1\support-fragment-27.1.1.aar\9f50ad00dbdc40ee43ac0bee37581c19\AndroidManifest.xml:17:1-22:12
+MERGED from [com.android.support:animated-vector-drawable:27.1.1] C:\Users\steff\.gradle\caches\transforms-1\files-1.1\animated-vector-drawable-27.1.1.aar\8cce3f96f38a0e4ef3b68f3611f9b9e8\AndroidManifest.xml:17:1-22:12
+MERGED from [com.android.support:recyclerview-v7:27.1.1] C:\Users\steff\.gradle\caches\transforms-1\files-1.1\recyclerview-v7-27.1.1.aar\821b29698a95f56842276da2f7e2e9cf\AndroidManifest.xml:17:1-22:12
+MERGED from [com.android.support:support-core-ui:27.1.1] C:\Users\steff\.gradle\caches\transforms-1\files-1.1\support-core-ui-27.1.1.aar\8dd6a0c55440bb62bfa987aec2557d15\AndroidManifest.xml:17:1-22:12
+MERGED from [com.android.support:support-core-utils:27.1.1] C:\Users\steff\.gradle\caches\transforms-1\files-1.1\support-core-utils-27.1.1.aar\21e885d9a1a61a77a65631f5a0cc2676\AndroidManifest.xml:17:1-22:12
+MERGED from [com.android.support:support-vector-drawable:27.1.1] C:\Users\steff\.gradle\caches\transforms-1\files-1.1\support-vector-drawable-27.1.1.aar\d0de4847324824e5926defc2f4128a3d\AndroidManifest.xml:17:1-22:12
+MERGED from [com.android.support:support-media-compat:27.1.1] C:\Users\steff\.gradle\caches\transforms-1\files-1.1\support-media-compat-27.1.1.aar\1e556ce80c415336b041bc273eefba8b\AndroidManifest.xml:17:1-22:12
+MERGED from [com.android.support:transition:27.1.1] C:\Users\steff\.gradle\caches\transforms-1\files-1.1\transition-27.1.1.aar\2505d6bef20b8219398b753cb387549d\AndroidManifest.xml:17:1-22:12
+MERGED from [com.android.support:support-compat:27.1.1] C:\Users\steff\.gradle\caches\transforms-1\files-1.1\support-compat-27.1.1.aar\f26c9fde4e7f226e7873a4e420f0cff1\AndroidManifest.xml:17:1-22:12
+MERGED from [android.arch.lifecycle:livedata-core:1.1.0] C:\Users\steff\.gradle\caches\transforms-1\files-1.1\livedata-core-1.1.0.aar\49030cb389ea7ea4e03e0d8223cd1fd0\AndroidManifest.xml:17:1-22:12
+MERGED from [android.arch.lifecycle:viewmodel:1.1.0] C:\Users\steff\.gradle\caches\transforms-1\files-1.1\viewmodel-1.1.0.aar\459ca488ba2f1acd5f95612a7a6a2eb4\AndroidManifest.xml:17:1-22:12
+MERGED from [android.arch.lifecycle:runtime:1.1.0] C:\Users\steff\.gradle\caches\transforms-1\files-1.1\runtime-1.1.0.aar\3beff28ae8466adb7c8d2460de852809\AndroidManifest.xml:17:1-22:12
+MERGED from [android.arch.core:runtime:1.1.0] C:\Users\steff\.gradle\caches\transforms-1\files-1.1\runtime-1.1.0.aar\72c024bc86f3c9e6ce121b3e523fa9e6\AndroidManifest.xml:17:1-22:12
+INJECTED from C:\Users\steff\AndroidStudioProjects\ProyectoMoviles\app\src\main\AndroidManifest.xml:2:1-28:12
+INJECTED from C:\Users\steff\AndroidStudioProjects\ProyectoMoviles\app\src\main\AndroidManifest.xml:2:1-28:12
+INJECTED from C:\Users\steff\AndroidStudioProjects\ProyectoMoviles\app\src\main\AndroidManifest.xml:2:1-28:12
+	package
+		ADDED from C:\Users\steff\AndroidStudioProjects\ProyectoMoviles\app\src\main\AndroidManifest.xml:3:5-53
+		INJECTED from C:\Users\steff\AndroidStudioProjects\ProyectoMoviles\app\src\main\AndroidManifest.xml
+		INJECTED from C:\Users\steff\AndroidStudioProjects\ProyectoMoviles\app\src\main\AndroidManifest.xml
+	android:versionName
+		INJECTED from C:\Users\steff\AndroidStudioProjects\ProyectoMoviles\app\src\main\AndroidManifest.xml
+		ADDED from C:\Users\steff\AndroidStudioProjects\ProyectoMoviles\app\src\main\AndroidManifest.xml:2:1-28:12
+		INJECTED from C:\Users\steff\AndroidStudioProjects\ProyectoMoviles\app\src\main\AndroidManifest.xml
+	android:versionCode
+		INJECTED from C:\Users\steff\AndroidStudioProjects\ProyectoMoviles\app\src\main\AndroidManifest.xml
+		ADDED from C:\Users\steff\AndroidStudioProjects\ProyectoMoviles\app\src\main\AndroidManifest.xml:2:1-28:12
+		INJECTED from C:\Users\steff\AndroidStudioProjects\ProyectoMoviles\app\src\main\AndroidManifest.xml
+	xmlns:android
+		ADDED from C:\Users\steff\AndroidStudioProjects\ProyectoMoviles\app\src\main\AndroidManifest.xml:2:11-69
+uses-permission#android.permission.INTERNET
+ADDED from C:\Users\steff\AndroidStudioProjects\ProyectoMoviles\app\src\main\AndroidManifest.xml:4:5-66
+	android:name
+		ADDED from C:\Users\steff\AndroidStudioProjects\ProyectoMoviles\app\src\main\AndroidManifest.xml:4:22-64
+uses-permission#android.permission.ACCESS_NETWORK_STATE
+ADDED from C:\Users\steff\AndroidStudioProjects\ProyectoMoviles\app\src\main\AndroidManifest.xml:5:5-79
+	android:name
+		ADDED from C:\Users\steff\AndroidStudioProjects\ProyectoMoviles\app\src\main\AndroidManifest.xml:5:22-76
+uses-permission#android.permission.ACCESS_WIFI_STATE
+ADDED from C:\Users\steff\AndroidStudioProjects\ProyectoMoviles\app\src\main\AndroidManifest.xml:6:5-76
+	android:name
+		ADDED from C:\Users\steff\AndroidStudioProjects\ProyectoMoviles\app\src\main\AndroidManifest.xml:6:22-73
+application
+ADDED from C:\Users\steff\AndroidStudioProjects\ProyectoMoviles\app\src\main\AndroidManifest.xml:8:5-26:19
+MERGED from [com.android.support.constraint:constraint-layout:1.1.0] C:\Users\steff\.gradle\caches\transforms-1\files-1.1\constraint-layout-1.1.0.aar\bd70b3e74134c169bf11ca657ffa3469\AndroidManifest.xml:9:5-20
+MERGED from [com.android.support.constraint:constraint-layout:1.1.0] C:\Users\steff\.gradle\caches\transforms-1\files-1.1\constraint-layout-1.1.0.aar\bd70b3e74134c169bf11ca657ffa3469\AndroidManifest.xml:9:5-20
+MERGED from [com.android.volley:volley:1.1.0] C:\Users\steff\.gradle\caches\transforms-1\files-1.1\volley-1.1.0.aar\c006d29c81d53f5e97d77f854f66ce7f\AndroidManifest.xml:9:5-20
+MERGED from [com.android.volley:volley:1.1.0] C:\Users\steff\.gradle\caches\transforms-1\files-1.1\volley-1.1.0.aar\c006d29c81d53f5e97d77f854f66ce7f\AndroidManifest.xml:9:5-20
+	android:supportsRtl
+		ADDED from C:\Users\steff\AndroidStudioProjects\ProyectoMoviles\app\src\main\AndroidManifest.xml:13:9-35
+	android:label
+		ADDED from C:\Users\steff\AndroidStudioProjects\ProyectoMoviles\app\src\main\AndroidManifest.xml:11:9-41
+	android:roundIcon
+		ADDED from C:\Users\steff\AndroidStudioProjects\ProyectoMoviles\app\src\main\AndroidManifest.xml:12:9-54
+	android:icon
+		ADDED from C:\Users\steff\AndroidStudioProjects\ProyectoMoviles\app\src\main\AndroidManifest.xml:10:9-59
+	android:allowBackup
+		ADDED from C:\Users\steff\AndroidStudioProjects\ProyectoMoviles\app\src\main\AndroidManifest.xml:9:9-35
+	android:theme
+		ADDED from C:\Users\steff\AndroidStudioProjects\ProyectoMoviles\app\src\main\AndroidManifest.xml:14:9-40
+activity#com.example.cristopher.proyectomoviles.MainActivity
+ADDED from C:\Users\steff\AndroidStudioProjects\ProyectoMoviles\app\src\main\AndroidManifest.xml:15:9-21:20
+	android:name
+		ADDED from C:\Users\steff\AndroidStudioProjects\ProyectoMoviles\app\src\main\AndroidManifest.xml:15:19-47
+intent-filter#action:name:android.intent.action.MAIN+category:name:android.intent.category.LAUNCHER
+ADDED from C:\Users\steff\AndroidStudioProjects\ProyectoMoviles\app\src\main\AndroidManifest.xml:16:13-20:29
+action#android.intent.action.MAIN
+ADDED from C:\Users\steff\AndroidStudioProjects\ProyectoMoviles\app\src\main\AndroidManifest.xml:17:17-69
+	android:name
+		ADDED from C:\Users\steff\AndroidStudioProjects\ProyectoMoviles\app\src\main\AndroidManifest.xml:17:25-66
+category#android.intent.category.LAUNCHER
+ADDED from C:\Users\steff\AndroidStudioProjects\ProyectoMoviles\app\src\main\AndroidManifest.xml:19:17-77
+	android:name
+		ADDED from C:\Users\steff\AndroidStudioProjects\ProyectoMoviles\app\src\main\AndroidManifest.xml:19:27-74
+activity#com.example.cristopher.proyectomoviles.Business.VistaPrincipal
+ADDED from C:\Users\steff\AndroidStudioProjects\ProyectoMoviles\app\src\main\AndroidManifest.xml:22:9-25:68
+	android:label
+		ADDED from C:\Users\steff\AndroidStudioProjects\ProyectoMoviles\app\src\main\AndroidManifest.xml:24:13-67
+	android:theme
+		ADDED from C:\Users\steff\AndroidStudioProjects\ProyectoMoviles\app\src\main\AndroidManifest.xml:25:13-56
+	android:name
+		ADDED from C:\Users\steff\AndroidStudioProjects\ProyectoMoviles\app\src\main\AndroidManifest.xml:23:13-52
+uses-sdk
+INJECTED from C:\Users\steff\AndroidStudioProjects\ProyectoMoviles\app\src\main\AndroidManifest.xml reason: use-sdk injection requested
+INJECTED from C:\Users\steff\AndroidStudioProjects\ProyectoMoviles\app\src\main\AndroidManifest.xml
+INJECTED from C:\Users\steff\AndroidStudioProjects\ProyectoMoviles\app\src\main\AndroidManifest.xml
+MERGED from [com.android.support:design:27.1.1] C:\Users\steff\.gradle\caches\transforms-1\files-1.1\design-27.1.1.aar\9ef8cb428ec97e606f575e9f814da90c\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:design:27.1.1] C:\Users\steff\.gradle\caches\transforms-1\files-1.1\design-27.1.1.aar\9ef8cb428ec97e606f575e9f814da90c\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:appcompat-v7:27.1.1] C:\Users\steff\.gradle\caches\transforms-1\files-1.1\appcompat-v7-27.1.1.aar\8c7bfa1d4282e02ef1eb78a28113db00\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:appcompat-v7:27.1.1] C:\Users\steff\.gradle\caches\transforms-1\files-1.1\appcompat-v7-27.1.1.aar\8c7bfa1d4282e02ef1eb78a28113db00\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support.constraint:constraint-layout:1.1.0] C:\Users\steff\.gradle\caches\transforms-1\files-1.1\constraint-layout-1.1.0.aar\bd70b3e74134c169bf11ca657ffa3469\AndroidManifest.xml:5:5-7:41
+MERGED from [com.android.support.constraint:constraint-layout:1.1.0] C:\Users\steff\.gradle\caches\transforms-1\files-1.1\constraint-layout-1.1.0.aar\bd70b3e74134c169bf11ca657ffa3469\AndroidManifest.xml:5:5-7:41
+MERGED from [com.android.support:support-v4:27.1.1] C:\Users\steff\.gradle\caches\transforms-1\files-1.1\support-v4-27.1.1.aar\c7f59bea674219848b62e5bd9ce726bd\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:support-v4:27.1.1] C:\Users\steff\.gradle\caches\transforms-1\files-1.1\support-v4-27.1.1.aar\c7f59bea674219848b62e5bd9ce726bd\AndroidManifest.xml:20:5-44
+MERGED from [com.android.volley:volley:1.1.0] C:\Users\steff\.gradle\caches\transforms-1\files-1.1\volley-1.1.0.aar\c006d29c81d53f5e97d77f854f66ce7f\AndroidManifest.xml:7:5-43
+MERGED from [com.android.volley:volley:1.1.0] C:\Users\steff\.gradle\caches\transforms-1\files-1.1\volley-1.1.0.aar\c006d29c81d53f5e97d77f854f66ce7f\AndroidManifest.xml:7:5-43
+MERGED from [com.jakewharton:butterknife:8.1.0] C:\Users\steff\.gradle\caches\transforms-1\files-1.1\butterknife-8.1.0.aar\e51afc86700b636521b05fb43b555a7b\AndroidManifest.xml:5:5-43
+MERGED from [com.jakewharton:butterknife:8.1.0] C:\Users\steff\.gradle\caches\transforms-1\files-1.1\butterknife-8.1.0.aar\e51afc86700b636521b05fb43b555a7b\AndroidManifest.xml:5:5-43
+MERGED from [com.android.support:support-fragment:27.1.1] C:\Users\steff\.gradle\caches\transforms-1\files-1.1\support-fragment-27.1.1.aar\9f50ad00dbdc40ee43ac0bee37581c19\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:support-fragment:27.1.1] C:\Users\steff\.gradle\caches\transforms-1\files-1.1\support-fragment-27.1.1.aar\9f50ad00dbdc40ee43ac0bee37581c19\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:animated-vector-drawable:27.1.1] C:\Users\steff\.gradle\caches\transforms-1\files-1.1\animated-vector-drawable-27.1.1.aar\8cce3f96f38a0e4ef3b68f3611f9b9e8\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:animated-vector-drawable:27.1.1] C:\Users\steff\.gradle\caches\transforms-1\files-1.1\animated-vector-drawable-27.1.1.aar\8cce3f96f38a0e4ef3b68f3611f9b9e8\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:recyclerview-v7:27.1.1] C:\Users\steff\.gradle\caches\transforms-1\files-1.1\recyclerview-v7-27.1.1.aar\821b29698a95f56842276da2f7e2e9cf\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:recyclerview-v7:27.1.1] C:\Users\steff\.gradle\caches\transforms-1\files-1.1\recyclerview-v7-27.1.1.aar\821b29698a95f56842276da2f7e2e9cf\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:support-core-ui:27.1.1] C:\Users\steff\.gradle\caches\transforms-1\files-1.1\support-core-ui-27.1.1.aar\8dd6a0c55440bb62bfa987aec2557d15\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:support-core-ui:27.1.1] C:\Users\steff\.gradle\caches\transforms-1\files-1.1\support-core-ui-27.1.1.aar\8dd6a0c55440bb62bfa987aec2557d15\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:support-core-utils:27.1.1] C:\Users\steff\.gradle\caches\transforms-1\files-1.1\support-core-utils-27.1.1.aar\21e885d9a1a61a77a65631f5a0cc2676\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:support-core-utils:27.1.1] C:\Users\steff\.gradle\caches\transforms-1\files-1.1\support-core-utils-27.1.1.aar\21e885d9a1a61a77a65631f5a0cc2676\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:support-vector-drawable:27.1.1] C:\Users\steff\.gradle\caches\transforms-1\files-1.1\support-vector-drawable-27.1.1.aar\d0de4847324824e5926defc2f4128a3d\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:support-vector-drawable:27.1.1] C:\Users\steff\.gradle\caches\transforms-1\files-1.1\support-vector-drawable-27.1.1.aar\d0de4847324824e5926defc2f4128a3d\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:support-media-compat:27.1.1] C:\Users\steff\.gradle\caches\transforms-1\files-1.1\support-media-compat-27.1.1.aar\1e556ce80c415336b041bc273eefba8b\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:support-media-compat:27.1.1] C:\Users\steff\.gradle\caches\transforms-1\files-1.1\support-media-compat-27.1.1.aar\1e556ce80c415336b041bc273eefba8b\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:transition:27.1.1] C:\Users\steff\.gradle\caches\transforms-1\files-1.1\transition-27.1.1.aar\2505d6bef20b8219398b753cb387549d\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:transition:27.1.1] C:\Users\steff\.gradle\caches\transforms-1\files-1.1\transition-27.1.1.aar\2505d6bef20b8219398b753cb387549d\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:support-compat:27.1.1] C:\Users\steff\.gradle\caches\transforms-1\files-1.1\support-compat-27.1.1.aar\f26c9fde4e7f226e7873a4e420f0cff1\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:support-compat:27.1.1] C:\Users\steff\.gradle\caches\transforms-1\files-1.1\support-compat-27.1.1.aar\f26c9fde4e7f226e7873a4e420f0cff1\AndroidManifest.xml:20:5-44
+MERGED from [android.arch.lifecycle:livedata-core:1.1.0] C:\Users\steff\.gradle\caches\transforms-1\files-1.1\livedata-core-1.1.0.aar\49030cb389ea7ea4e03e0d8223cd1fd0\AndroidManifest.xml:20:5-44
+MERGED from [android.arch.lifecycle:livedata-core:1.1.0] C:\Users\steff\.gradle\caches\transforms-1\files-1.1\livedata-core-1.1.0.aar\49030cb389ea7ea4e03e0d8223cd1fd0\AndroidManifest.xml:20:5-44
+MERGED from [android.arch.lifecycle:viewmodel:1.1.0] C:\Users\steff\.gradle\caches\transforms-1\files-1.1\viewmodel-1.1.0.aar\459ca488ba2f1acd5f95612a7a6a2eb4\AndroidManifest.xml:20:5-44
+MERGED from [android.arch.lifecycle:viewmodel:1.1.0] C:\Users\steff\.gradle\caches\transforms-1\files-1.1\viewmodel-1.1.0.aar\459ca488ba2f1acd5f95612a7a6a2eb4\AndroidManifest.xml:20:5-44
+MERGED from [android.arch.lifecycle:runtime:1.1.0] C:\Users\steff\.gradle\caches\transforms-1\files-1.1\runtime-1.1.0.aar\3beff28ae8466adb7c8d2460de852809\AndroidManifest.xml:20:5-44
+MERGED from [android.arch.lifecycle:runtime:1.1.0] C:\Users\steff\.gradle\caches\transforms-1\files-1.1\runtime-1.1.0.aar\3beff28ae8466adb7c8d2460de852809\AndroidManifest.xml:20:5-44
+MERGED from [android.arch.core:runtime:1.1.0] C:\Users\steff\.gradle\caches\transforms-1\files-1.1\runtime-1.1.0.aar\72c024bc86f3c9e6ce121b3e523fa9e6\AndroidManifest.xml:20:5-44
+MERGED from [android.arch.core:runtime:1.1.0] C:\Users\steff\.gradle\caches\transforms-1\files-1.1\runtime-1.1.0.aar\72c024bc86f3c9e6ce121b3e523fa9e6\AndroidManifest.xml:20:5-44
+INJECTED from C:\Users\steff\AndroidStudioProjects\ProyectoMoviles\app\src\main\AndroidManifest.xml
+INJECTED from C:\Users\steff\AndroidStudioProjects\ProyectoMoviles\app\src\main\AndroidManifest.xml
+	android:targetSdkVersion
+		INJECTED from C:\Users\steff\AndroidStudioProjects\ProyectoMoviles\app\src\main\AndroidManifest.xml
+		ADDED from C:\Users\steff\AndroidStudioProjects\ProyectoMoviles\app\src\main\AndroidManifest.xml
+		INJECTED from C:\Users\steff\AndroidStudioProjects\ProyectoMoviles\app\src\main\AndroidManifest.xml
+	android:minSdkVersion
+		INJECTED from C:\Users\steff\AndroidStudioProjects\ProyectoMoviles\app\src\main\AndroidManifest.xml
+		ADDED from C:\Users\steff\AndroidStudioProjects\ProyectoMoviles\app\src\main\AndroidManifest.xml
+		INJECTED from C:\Users\steff\AndroidStudioProjects\ProyectoMoviles\app\src\main\AndroidManifest.xml
