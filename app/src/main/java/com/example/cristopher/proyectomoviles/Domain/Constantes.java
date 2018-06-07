@@ -8,7 +8,7 @@ public interface Constantes {
     public static final String IP_USUARIOS=IP+"/controladoraUsuarios.php";
 
     public static final String IP_SERVICIOS=IP+"/controladoraServicio.php";
-
+    public static final String IP_HISTORIAL=IP+"/controladoraHistorial.php";
     public static final String GET = IP ;
 
     public static final String EXTRA_CEDULA = "cedula";
