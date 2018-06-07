@@ -1,10 +1,20 @@
 {
     "logs": [
         {
-            "outputFile": "D:\\Documentos\\GitHub\\ProyectoMoviles\\app\\build\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-es-rUS\\values-es-rUS.xml",
+            "outputFile": "C:\\Users\\Ignacio\\Documents\\GitHub\\ProyectoMoviles\\app\\build\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-es-rUS\\values-es-rUS.xml",
             "map": [
                 {
-                    "source": "C:\\Users\\Cristopher\\.gradle\\caches\\transforms-1\\files-1.1\\support-compat-27.1.1.aar\\e7c1546b8f5d8aa6b2a7ff752cac6194\\res\\values-es-rUS\\values-es-rUS.xml",
+                    "source": "C:\\Users\\Ignacio\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-27.1.1.aar\\64e303d332951f68bb8d89a8e90a2906\\res\\values-es-rUS\\values-es-rUS.xml",
+                    "from": {
+                        "startLines": "2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19",
+                        "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4",
+                        "startOffsets": "105,225,334,442,527,628,751,836,918,1000,1112,1212,1313,1421,1528,1635,1794,1894",
+                        "endColumns": "119,108,107,84,100,122,84,81,81,111,99,100,107,106,106,158,99,81",
+                        "endOffsets": "220,329,437,522,623,746,831,913,995,1107,1207,1308,1416,1523,1630,1789,1889,1971"
+                    }
+                },
+                {
+                    "source": "C:\\Users\\Ignacio\\.gradle\\caches\\transforms-1\\files-1.1\\support-compat-27.1.1.aar\\1e5c871616a420438f5fefb537809900\\res\\values-es-rUS\\values-es-rUS.xml",
                     "from": {
                         "startLines": "2",
                         "startColumns": "4",
@@ -18,16 +28,6 @@
                         "startOffsets": "1976",
                         "endColumns": "100",
                         "endOffsets": "2072"
-                    }
-                },
-                {
-                    "source": "C:\\Users\\Cristopher\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-27.1.1.aar\\0f6007cc43f1ab36e16853c43bb79be3\\res\\values-es-rUS\\values-es-rUS.xml",
-                    "from": {
-                        "startLines": "2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19",
-                        "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4",
-                        "startOffsets": "105,225,334,442,527,628,751,836,918,1000,1112,1212,1313,1421,1528,1635,1794,1894",
-                        "endColumns": "119,108,107,84,100,122,84,81,81,111,99,100,107,106,106,158,99,81",
-                        "endOffsets": "220,329,437,522,623,746,831,913,995,1107,1207,1308,1416,1523,1630,1789,1889,1971"
                     }
                 }
             ]

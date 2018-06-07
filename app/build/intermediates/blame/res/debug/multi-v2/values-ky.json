@@ -1,20 +1,10 @@
 {
     "logs": [
         {
-            "outputFile": "D:\\Documentos\\GitHub\\ProyectoMoviles\\app\\build\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-ky\\values-ky.xml",
+            "outputFile": "C:\\Users\\Ignacio\\Documents\\GitHub\\ProyectoMoviles\\app\\build\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-ky\\values-ky.xml",
             "map": [
                 {
-                    "source": "C:\\Users\\Cristopher\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-27.1.1.aar\\0f6007cc43f1ab36e16853c43bb79be3\\res\\values-ky\\values-ky.xml",
-                    "from": {
-                        "startLines": "2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19",
-                        "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4",
-                        "startOffsets": "105,209,304,423,507,614,731,809,888,969,1079,1186,1284,1390,1497,1598,1759,1862",
-                        "endColumns": "103,94,118,83,106,116,77,78,80,109,106,97,105,106,100,160,102,80",
-                        "endOffsets": "204,299,418,502,609,726,804,883,964,1074,1181,1279,1385,1492,1593,1754,1857,1938"
-                    }
-                },
-                {
-                    "source": "C:\\Users\\Cristopher\\.gradle\\caches\\transforms-1\\files-1.1\\support-compat-27.1.1.aar\\e7c1546b8f5d8aa6b2a7ff752cac6194\\res\\values-ky\\values-ky.xml",
+                    "source": "C:\\Users\\Ignacio\\.gradle\\caches\\transforms-1\\files-1.1\\support-compat-27.1.1.aar\\1e5c871616a420438f5fefb537809900\\res\\values-ky\\values-ky.xml",
                     "from": {
                         "startLines": "2",
                         "startColumns": "4",
@@ -28,6 +18,16 @@
                         "startOffsets": "1943",
                         "endColumns": "100",
                         "endOffsets": "2039"
+                    }
+                },
+                {
+                    "source": "C:\\Users\\Ignacio\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-27.1.1.aar\\64e303d332951f68bb8d89a8e90a2906\\res\\values-ky\\values-ky.xml",
+                    "from": {
+                        "startLines": "2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19",
+                        "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4",
+                        "startOffsets": "105,209,304,423,507,614,731,809,888,969,1079,1186,1284,1390,1497,1598,1759,1862",
+                        "endColumns": "103,94,118,83,106,116,77,78,80,109,106,97,105,106,100,160,102,80",
+                        "endOffsets": "204,299,418,502,609,726,804,883,964,1074,1181,1279,1385,1492,1593,1754,1857,1938"
                     }
                 }
             ]

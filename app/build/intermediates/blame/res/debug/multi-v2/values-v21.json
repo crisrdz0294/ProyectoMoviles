@@ -1,10 +1,10 @@
 {
     "logs": [
         {
-            "outputFile": "D:\\Documentos\\GitHub\\ProyectoMoviles\\app\\build\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-v21\\values-v21.xml",
+            "outputFile": "C:\\Users\\Ignacio\\Documents\\GitHub\\ProyectoMoviles\\app\\build\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-v21\\values-v21.xml",
             "map": [
                 {
-                    "source": "C:\\Users\\Cristopher\\.gradle\\caches\\transforms-1\\files-1.1\\support-compat-27.1.1.aar\\e7c1546b8f5d8aa6b2a7ff752cac6194\\res\\values-v21\\values-v21.xml",
+                    "source": "C:\\Users\\Ignacio\\.gradle\\caches\\transforms-1\\files-1.1\\support-compat-27.1.1.aar\\1e5c871616a420438f5fefb537809900\\res\\values-v21\\values-v21.xml",
                     "from": {
                         "startLines": "2,3,4,5,6,7,8,9,10,13",
                         "startColumns": "4,4,4,4,4,4,4,4,4,4",
@@ -23,7 +23,7 @@
                     }
                 },
                 {
-                    "source": "C:\\Users\\Cristopher\\.gradle\\caches\\transforms-1\\files-1.1\\support-media-compat-27.1.1.aar\\1800551ca0643cbb4f6af303301873f9\\res\\values-v21\\values-v21.xml",
+                    "source": "C:\\Users\\Ignacio\\.gradle\\caches\\transforms-1\\files-1.1\\support-media-compat-27.1.1.aar\\b33c07823ea9c76111202081a19670f4\\res\\values-v21\\values-v21.xml",
                     "from": {
                         "startLines": "2,5,8,11",
                         "startColumns": "4,4,4,4",
@@ -42,26 +42,7 @@
                     }
                 },
                 {
-                    "source": "C:\\Users\\Cristopher\\.gradle\\caches\\transforms-1\\files-1.1\\design-27.1.1.aar\\59a4f1eb406e28290ceb9e2fb93e89b2\\res\\values-v21\\values-v21.xml",
-                    "from": {
-                        "startLines": "2,5",
-                        "startColumns": "4,4",
-                        "startOffsets": "55,266",
-                        "endLines": "4,5",
-                        "endColumns": "12,96",
-                        "endOffsets": "261,358"
-                    },
-                    "to": {
-                        "startLines": "169,233",
-                        "startColumns": "4,4",
-                        "startOffsets": "12725,17275",
-                        "endLines": "171,233",
-                        "endColumns": "12,96",
-                        "endOffsets": "12931,17367"
-                    }
-                },
-                {
-                    "source": "D:\\Documentos\\GitHub\\ProyectoMoviles\\app\\src\\main\\res\\values-v21\\styles.xml",
+                    "source": "C:\\Users\\Ignacio\\Documents\\GitHub\\ProyectoMoviles\\app\\src\\main\\res\\values-v21\\styles.xml",
                     "from": {
                         "startLines": "2",
                         "startColumns": "4",
@@ -80,7 +61,26 @@
                     }
                 },
                 {
-                    "source": "C:\\Users\\Cristopher\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-27.1.1.aar\\0f6007cc43f1ab36e16853c43bb79be3\\res\\values-v21\\values-v21.xml",
+                    "source": "C:\\Users\\Ignacio\\.gradle\\caches\\transforms-1\\files-1.1\\design-27.1.1.aar\\38e272c4c60ee26919d86283896f4fce\\res\\values-v21\\values-v21.xml",
+                    "from": {
+                        "startLines": "2,5",
+                        "startColumns": "4,4",
+                        "startOffsets": "55,266",
+                        "endLines": "4,5",
+                        "endColumns": "12,96",
+                        "endOffsets": "261,358"
+                    },
+                    "to": {
+                        "startLines": "169,233",
+                        "startColumns": "4,4",
+                        "startOffsets": "12725,17275",
+                        "endLines": "171,233",
+                        "endColumns": "12,96",
+                        "endOffsets": "12931,17367"
+                    }
+                },
+                {
+                    "source": "C:\\Users\\Ignacio\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-27.1.1.aar\\64e303d332951f68bb8d89a8e90a2906\\res\\values-v21\\values-v21.xml",
                     "from": {
                         "startLines": "2,3,4,5,6,7,8,9,10,11,12,13,14,15,17,19,20,21,22,24,26,27,28,29,30,32,34,36,38,40,42,43,48,50,52,53,54,56,58,59,60,61,62,63,107,110,154,157,160,162,164,166,169,171,174,175,176,179,180,181,182,183,184,187,188,190,192,194,196,200,202,203,204,205,207,211,213,215,216,217,218,219,221,222,223,233,234,235,247",
                         "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4",
