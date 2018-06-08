@@ -200,7 +200,7 @@ public class VistaPrincipal extends AppCompatActivity implements NavigationView.
         }else if (id == R.id.nav_configuracion) {
 
         }else if (id == R.id.nav_ayuda) {
-
+            agregarFragmentoPrincipal(new FragmentoAyuda());
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);

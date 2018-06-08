@@ -12,7 +12,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.ListView;
 import android.widget.Toast;
+import android.widget.ViewFlipper;
 
 import com.android.volley.Request;
 import com.android.volley.Response;
@@ -39,12 +41,18 @@ import static android.content.Context.MODE_PRIVATE;
 
 /**
  * A simple {@link Fragment} subclass.
+ *
+ *
  */
 public class FragmentoHistorialServicios extends FragmentoAbsPrincipal {
 
-    private ImageView imagen1;
-    private ImageView imagen2;
-    private ImageView imagen3;
+    private ListView listViewHistoriales;
+    private List<HistorialServicio> listaHistoriales;
+    ViewFlipper simpleViewFlipper;
+
+    private View vista;
+
+    private ArrayList<HistorialServicio> usuarios = new ArrayList<>();
 
     public FragmentoHistorialServicios() {
         // Required empty public constructor
@@ -63,118 +71,46 @@ public class FragmentoHistorialServicios extends FragmentoAbsPrincipal {
         }
     }
 
+    public void cargarDatosAdaptador(){}
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
         View vista= inflater.inflate(R.layout.fragment_fragmento_historial_servicios, container, false);
-        imagen1=vista.findViewById(R.id.imagenServicioHistorial1);
-        imagen2=vista.findViewById(R.id.imagenServicioHistorial2);
-        imagen3=vista.findViewById(R.id.imagenServicioHistorial3);
+        listViewHistoriales=vista.findViewById(R.id.listaHistorial);
 
         SharedPreferences sesion= this.getActivity().getSharedPreferences("Sesion", MODE_PRIVATE);
 
         String nuevaUrl= Constantes.IP_HISTORIAL+"?accion=obtenerHistorialServiciosUsuario&&cedulausuario="+sesion.getString("cedula","");
 
+
+
         VolleySingleton.getInstance(getActivity()).addToRequestQueue(
                 new JsonObjectRequest(Request.Method.GET, nuevaUrl, null, new Response.Listener<JSONObject>() {
                     @Override
                     public void onResponse(JSONObject response) {
-                        Gson gson = new Gson();
+
                         try{
 
                             String estadoRespuesta=response.getString("estado");//recibe la respuesta del script
-
 
                             switch (estadoRespuesta){
 
                                 case "1"://obtuvo los usuarios
                                     try{
+                                        Gson gsonHistorial = new Gson();
                                         JSONArray historialJson=response.getJSONArray("historial");
-                                        Type listType = new TypeToken<ArrayList<HistorialServicio>>(){}.getType();
-                                        List<HistorialServicio> listaUsuario=new Gson().fromJson(String.valueOf(historialJson),listType);
-
-                                        HistorialServicio[] historiales=gson.fromJson(historialJson.toString(),HistorialServicio[].class);
-
-
-                                        int i=0;
-                                        for (i=0;i<historiales.length;i++) {
-                                            String nuevaUrl2= Constantes.IP_HISTORIAL+"?accion=obtenerImagenesServicio&&idServicio="+historiales[i].getIdservicio();
-
-
-                                            int finalI = i;
-                                            VolleySingleton.getInstance(getActivity()).addToRequestQueue(
-                                                    new JsonObjectRequest(Request.Method.GET, nuevaUrl2, null, new                                                       Response.Listener<JSONObject>() {
-                                                        @Override
-                                                        public void onResponse(JSONObject response) {
-                                                            Gson gson = new Gson();
-                                                            try{
-
-                                                                String estadoRespuesta=response.getString("estado");//recibe la respuesta del script
-
-
-                                                                switch (estadoRespuesta){
-
-                                                                    case "1"://obtuvo los usuarios
-                                                                        try{
-                                                                            JSONArray imagenesJson=response.getJSONArray("imagenes");
-                                                                            Type listType = new TypeToken<ArrayList<Imagen>>(){}.getType();
-                                                                            List<Imagen> listaImagen=new Gson().fromJson(String.valueOf(imagenesJson),listType);
-
-                                                                            Imagen[] imagenes=gson.fromJson(imagenesJson.toString(),Imagen[].class);
-
-                                                                            Bitmap imagen1Bitmap = StringToBitMap(imagenes[0].getImagen());
-                                                                            imagen1.setImageBitmap(imagen1Bitmap);
-
-                                                                            Bitmap imagen2Bitmap = StringToBitMap(imagenes[1].getImagen());
-                                                                            imagen2.setImageBitmap(imagen2Bitmap);
-
-                                                                            Bitmap imagen3Bitmap = StringToBitMap(imagenes[2].getImagen());
-                                                                            imagen3.setImageBitmap(imagen3Bitmap);
-
-
-                                                                        }catch (Exception e){
-
-                                                                            Toast mensaje=Toast.makeText(getContext(),"Excepcion imagenes"+e.getMessage(),Toast.LENGTH_LONG);
-                                                                            mensaje.setGravity(Gravity.CENTER,0,0);
-                                                                            mensaje.show();
-
-                                                                        }
-
-                                                                        break;
-                                                                    case "2":
-
-                                                                        Toast mensaje=Toast.makeText(getContext(),"Fallo al obtener las imagenes",Toast.LENGTH_LONG);
-                                                                        mensaje.setGravity(Gravity.CENTER,0,0);
-                                                                        mensaje.show();
-                                                                        break;
-                                                                }
-
-
-                                                            }catch (Exception e){
-
-                                                                e.printStackTrace();
-                                                            }
-                                                        }
-                                                    }, new Response.ErrorListener() {
-                                                        @Override
-                                                        public void onErrorResponse(VolleyError error) {
-                                                            Toast mensaje=Toast.makeText(getContext(),"ErrorListenerImagenes:"+error.getMessage(),Toast.LENGTH_LONG);//CREA UN
-                                                            mensaje.setGravity(Gravity.CENTER,0,0);
-                                                            mensaje.show();
-
-                                                        }
-                                                    }
-
-                                                    ));
-
-                                        }
 
 
 
+                                        //Type listType = new TypeToken<ArrayList<HistorialServicio>>(){}.getType();
+                                       // List<HistorialServicio> listaUsuario=new Gson().fromJson(String.valueOf(historialJson),listType);
 
-                                        //UsuariosAdapter usuariosAdapter=new UsuariosAdapter(getContext(),R.layout.list_view_usuarios, Arrays.asList(usuarios));
-                                        //listViewUsuarios.setAdapter(usuariosAdapter);
+                                        HistorialServicio[] historiales=gsonHistorial.fromJson(historialJson.toString(),HistorialServicio[].class);
+
+                                        HistorialAdapter historialAdapter=new HistorialAdapter(getContext(),R.layout.list_view_historial, Arrays.asList(historiales));
+                                        listViewHistoriales.setAdapter(historialAdapter);
 
                                     }catch (Exception e){
 
