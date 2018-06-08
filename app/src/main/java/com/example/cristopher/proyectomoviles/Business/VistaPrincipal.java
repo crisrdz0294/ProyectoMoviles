@@ -1,9 +1,11 @@
 package com.example.cristopher.proyectomoviles.Business;
 
+import android.content.DialogInterface;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
+import android.support.v7.app.AlertDialog;
 import android.view.Gravity;
 import android.view.View;
 import android.support.design.widget.NavigationView;
@@ -28,6 +30,14 @@ public class VistaPrincipal extends AppCompatActivity implements NavigationView.
                 .replace(R.id.Contenedor2 , fragment))
                 .commit();
     }
+
+    public void cerrarSesion(FragmentoAbsPrincipal fragment) {//METODO QUE AGREGA EL FRAGMENTO ACTUAL A LA PILA PARA PROCESAR EL OTRO
+        (getSupportFragmentManager().beginTransaction()
+                .replace(R.id.Contenedor , fragment))
+                .commit();
+    }
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
@@ -147,17 +157,50 @@ public class VistaPrincipal extends AppCompatActivity implements NavigationView.
         } else if (id == R.id.nav_ver_servicios) {
             agregarFragmentoPrincipal(new FragmentoListaServicio());
         } else if (id == R.id.nav_ver_perfil) {
-
+            agregarFragmentoPrincipal(new FragmentoPerfil());
         } else if (id == R.id.nav_ver_usuarios) {
             agregarFragmentoPrincipal(new FragmentoListaUsuarios());
         } else if (id == R.id.nav_historial_servicios) {
-
+            agregarFragmentoPrincipal(new FragmentoHistorialServicios());
         } else if (id == R.id.nav_cerrar_sesion) {
+
+            AlertDialog.Builder dialogo = new AlertDialog.Builder(this);
+            dialogo.setMessage("Esta seguro que desea salir de la aplicacion?");
+            dialogo.setCancelable(true);
+
+            dialogo.setPositiveButton(
+                    "Si",
+                    new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int id) {
+                            SharedPreferences sesionUsuario= getSharedPreferences("Sesion", MODE_PRIVATE);
+                            SharedPreferences.Editor editorUsuario = sesionUsuario.edit();
+                            editorUsuario.remove("tipoUsuario");
+                            editorUsuario.remove("nombre");
+                            editorUsuario.remove("apellidos");
+                            editorUsuario.remove("cedula");
+                            editorUsuario.clear();
+                            editorUsuario.commit();
+                            onBackPressed();
+                            dialog.cancel();
+                        }
+                    });
+
+            dialogo.setNegativeButton(
+                    "No",
+                    new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int id) {
+
+                            dialog.cancel();
+                        }
+                    });
+
+            AlertDialog alerta = dialogo.create();
+            alerta.show();
 
         }else if (id == R.id.nav_configuracion) {
 
         }else if (id == R.id.nav_ayuda) {
-
+            agregarFragmentoPrincipal(new FragmentoAyuda());
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);

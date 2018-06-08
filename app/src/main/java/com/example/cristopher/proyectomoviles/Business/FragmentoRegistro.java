@@ -54,6 +54,20 @@ public class FragmentoRegistro extends FragmentoAbsPrincipal implements View.OnC
     }
 
 
+
+    public void onBackPressed() {
+
+        int count = getFragmentManager().getBackStackEntryCount();
+
+        if (count == 0) {
+
+            //additional code
+        } else {
+            getFragmentManager().popBackStack();
+        }
+
+    }
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -211,6 +225,7 @@ public class FragmentoRegistro extends FragmentoAbsPrincipal implements View.OnC
                                     confirmarClave.setText("");
                                     email.setText("");
                                     telefono.setText("");
+                                    onBackPressed();
 
                                     break;
                                 case "2":
