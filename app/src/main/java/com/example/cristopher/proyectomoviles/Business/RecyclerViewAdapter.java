@@ -43,7 +43,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
 
     @Override
     public void onBindViewHolder(@NonNull RecyclerViewAdapter.MyViewHolder holder, int position) {
-        Bitmap bitmap1=ListaServicios.get(position).getListaFotos().get(0);
+        Bitmap bitmap1=ListaServicios.get(position).getImagen1();
         Matrix matrix = new Matrix();
 
         int width = bitmap1.getWidth();
@@ -59,8 +59,8 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
         // volvemos a crear la imagen con los nuevos valores
         Bitmap resizedBitmap = Bitmap.createBitmap(bitmap1, 0, 0,width, height, matrix, true);
         holder.image.setImageBitmap(resizedBitmap);
-        holder.Tipo.setText(ListaServicios.get(0).getTipoServicio().toString());
-        holder.title.setText(ListaServicios.get(0).getUbicacionServicio().toString());
+        holder.Tipo.setText(ListaServicios.get(0).getTiposervicio().toString());
+        holder.title.setText(ListaServicios.get(0).getUbicacionservicio().toString());
 
 
 

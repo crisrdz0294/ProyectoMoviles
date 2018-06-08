@@ -59,6 +59,7 @@ public class FragmentoRegistroServicio extends FragmentoAbsPrincipal implements 
 
     private EditText descripcionServicio;
     private EditText ubicacionServicio;
+    private EditText nombreServicio;
 
     private Button Registro;
     private Button cargar1;
@@ -106,6 +107,7 @@ cargar1=vista.findViewById(R.id.btExaminar);
         cargar3=vista.findViewById(R.id.btExaminar2);
         descripcionServicio=vista.findViewById(R.id.tfDescripcionServicio);
         ubicacionServicio=vista.findViewById(R.id.tfUbicacion);
+        nombreServicio=vista.findViewById(R.id.tfNombre);
         precio=vista.findViewById(R.id.tfPrecio);
         Registro=vista.findViewById(R.id.btRegistrarServicio);
 
@@ -243,13 +245,22 @@ cargar1=vista.findViewById(R.id.btExaminar);
           String tipo=  String.valueOf(dropdown.getSelectedItemPosition());
           String ubica=ubicacionServicio.getText().toString();
           String Precio=precio.getText().toString();
+          String name=nombreServicio.getText().toString();
              Boolean Pasa=false;
             if(!TextUtils.isEmpty(Descripcion)){
 
                 if(!TextUtils.isEmpty(ubica)){
 
                     if(!TextUtils.isEmpty(Precio)){
-                       Pasa=true;
+                        if(!TextUtils.isEmpty(name)){
+                            Pasa=true;
+                        }else{
+                            Toast mensaje=Toast.makeText(getContext(),"Nombre Vacio",Toast.LENGTH_LONG);//CREA UN TOAST(NOTIFICACION) QUE HAY CAMPOS VACIOS
+                            mensaje.setGravity(Gravity.CENTER,0,0);//LE ASIGNA LA POSICION A LA NOTIFICACION
+                            mensaje.show();//MUESTRA LA NOTIFICACION
+                        }
+
+
                     }else{
                         Toast mensaje=Toast.makeText(getContext(),"Precio Vacio",Toast.LENGTH_LONG);//CREA UN TOAST(NOTIFICACION) QUE HAY CAMPOS VACIOS
                         mensaje.setGravity(Gravity.CENTER,0,0);//LE ASIGNA LA POSICION A LA NOTIFICACION
@@ -278,7 +289,7 @@ cargar1=vista.findViewById(R.id.btExaminar);
 
 
 
-                    //mapaServicio.put("nombreservicio",cedula1);
+                    mapaServicio.put("nombreservicio",name);
                     mapaServicio.put("accion","insertarServicios");
                     mapaServicio.put("descripcionservicio",Descripcion);
                     mapaServicio.put("ubicacionservicio",ubica);
@@ -309,6 +320,8 @@ cargar1=vista.findViewById(R.id.btExaminar);
                                                                                                      Toast mensaje1=Toast.makeText(getContext(),mensaje,Toast.LENGTH_LONG);
                                                                                                      mensaje1.setGravity(Gravity.CENTER,0,0);
                                                                                                      mensaje1.show();
+
+                                                                                                     nombreServicio.setText("");
 
 
                                                                                                       descripcionServicio.setText("");

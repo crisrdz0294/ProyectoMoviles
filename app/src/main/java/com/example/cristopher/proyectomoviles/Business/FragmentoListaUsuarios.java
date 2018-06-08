@@ -66,6 +66,7 @@ public class FragmentoListaUsuarios extends FragmentoAbsPrincipal{
                         new JsonObjectRequest(Request.Method.GET, nuevaUrl, null, new Response.Listener<JSONObject>() {
                             @Override
                             public void onResponse(JSONObject response) {
+                                       System.out.println(response);
                                 procesarRespuestaUsuarios(response);
                             }
                         }, new Response.ErrorListener() {
@@ -102,7 +103,7 @@ public class FragmentoListaUsuarios extends FragmentoAbsPrincipal{
                       //  List<Usuario> listaUsuario=new Gson().fromJson(String.valueOf(usuariosJson),listType);
 
                         Usuario[] usuarios=gson.fromJson(usuariosJson.toString(),Usuario[].class);
-
+                      //System.out.println(Arrays.toString(usuarios));
 
                         UsuariosAdapter usuariosAdapter=new UsuariosAdapter(getContext(),R.layout.list_view_usuarios, Arrays.asList(usuarios));
                         listViewUsuarios.setAdapter(usuariosAdapter);

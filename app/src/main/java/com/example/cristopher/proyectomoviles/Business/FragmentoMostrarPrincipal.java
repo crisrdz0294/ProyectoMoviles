@@ -59,7 +59,7 @@ public class FragmentoMostrarPrincipal extends FragmentoAbsPrincipal {
         canvas.drawRect(0F, 0F, (float) 20, (float) 20, paint);
         image.add(bitmap);
         for(int i=0;i<=5;i++){
-        todos.add(new Servicio(1,"prueba","prueba","prueba",true,null,"prueba","prueba"));
+        todos.add(new Servicio(1,"prueba","prueba","prueba",true,null,null,null,null,null,null));
     }
         RecyclerView vist;
     vist= (RecyclerView) vista.findViewById(R.id.recyclerview_id2);

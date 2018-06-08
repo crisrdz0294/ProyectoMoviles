@@ -145,7 +145,7 @@ public class VistaPrincipal extends AppCompatActivity implements NavigationView.
         if (id == R.id.nav_registrar_servicio) {
            agregarFragmentoPrincipal(new FragmentoRegistroServicio());
         } else if (id == R.id.nav_ver_servicios) {
-            agregarFragmentoPrincipal(new FragmentoServicio());
+            agregarFragmentoPrincipal(new FragmentoListaServicio());
         } else if (id == R.id.nav_ver_perfil) {
 
         } else if (id == R.id.nav_ver_usuarios) {
